@@ -88,9 +88,21 @@ const results = [
               <header className="py-4 text-black bg-white text-center">
                 <h1 className="text-2xl font-bold text-blue-500">Tài liệu tham khảo</h1>
               </header>
-              <div className="flex justify-end items-center p-4 text-gray-600">
-                Kết quả {startIndex+1} - {endIndex} trong tổng số {totalResults}
+              <div class="flex justify-between items-center p-4 text-gray-600">
+              <div>
+                Kết quả {startIndex + 1} - {endIndex} trong tổng số {totalResults}
               </div>
+              <div class="flex items-center">
+                <input
+                  type="text"
+                  placeholder="Tìm kiếm..."
+                  class="border border-gray-300 p-2 rounded-md"
+                />
+                <button class="ml-2 bg-blue-500 text-white p-2 rounded-md">
+                  Tìm kiếm
+                </button>
+              </div>
+            </div>
               {displayedResults.map((result, index) => (
                 <ResultItem key={index} {...result} className="m-5" />
               ))}
@@ -183,9 +195,12 @@ const results = [
                   </a>
                 </nav>
               </div>
+              <h3>Tin tức nổi bật</h3>
             </div>
             <div className="col-span-1"></div>
+            
           </div>
+          
         </div>
       </div>
     );
