@@ -1,10 +1,10 @@
 // src/components/ResultItem.js
 import React from 'react';
 import './ResultItem.css';
-const ResultItem = ({ title, imageUrl, description, date, downloadLink }) => {
+const ResultItem = ({id, title, imageUrl, description, date, downloadLink }) => {
   const handleTitleClick = () => {
     // Thêm logic xử lý khi title được click, ví dụ mở Reference detail
-    console.log('Title clicked');
+    console.log('Title clicked', id, title);
   };
 
   return (
@@ -26,21 +26,11 @@ const ResultItem = ({ title, imageUrl, description, date, downloadLink }) => {
             <div className="relative">
                 <a href={downloadLink} download>
                     <button className="bg-red-500 text-white px-1 py-1 rounded-full flex items-center justify-center w-1/10 ml-auto">
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-2 w-2 mr-1"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                    >
-                        <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M14 5l7 7m0 0l-7 7m7-7H3"
-                        />
+                    <svg class="w-6 h-6 text-gray-800 dark:text-white ml-2 mb-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 18">
+                      <path stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 1v11m0 0 4-4m-4 4L4 8m11 4v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3"/>
                     </svg>
-                    <span className="ml-1 mr-3">Download</span>
+
+                    <span className="ml-2 mr-3">Download</span>
                     </button>
                 </a>
             </div>
