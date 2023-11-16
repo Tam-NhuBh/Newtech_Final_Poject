@@ -6,7 +6,7 @@ const Layout = lazy(() => import('./containers/Layout'))
 const Login = lazy(() => import('./pages/Login'))
 const CreateAccount = lazy(() => import('./pages/CreateAccount'))
 const ForgotPassword = lazy(() => import('./pages/ForgotPassword'))
-
+const Reference = lazy(() => import('./pages/Reference'))
 function App() {
   return (
     <>
@@ -16,7 +16,7 @@ function App() {
           <Route path="/login" component={Login} />
           <Route path="/create-account" component={CreateAccount} />
           <Route path="/forgot-password" component={ForgotPassword} />
-
+          <Route path="/reference" component={Reference} />
           {/* Place new routes over this */}
           <Route path="/app" component={Layout} />
           {/* If you have an index page, you can remothis Redirect */}
