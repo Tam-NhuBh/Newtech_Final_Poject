@@ -3,8 +3,11 @@ const cors = require("cors");
 
 const app = express();
 
-var corsOptions = {
-  origin: "http://localhost:8080"
+const corsOptions = {
+  origin: 'http://localhost:3000', // Allow requests from the ReactJS frontend
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true, // Allow cookies to be sent across origins
+  optionsSuccessStatus: 204, // Set the preflight response status to 204 No Content
 };
 
 app.use(cors(corsOptions));
@@ -35,7 +38,7 @@ app.get("/", (req, res) => {
 });
 
 require("./app/routes/turorial.routes")(app);
-
+require("./app/routes/project.routes")(app);
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
