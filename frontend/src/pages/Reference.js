@@ -1,70 +1,73 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect  } from 'react';
 import ReactPaginate from 'react-paginate';
 import ResultItem from '../components/Reference/ResultItem'; // Đường dẫn đến component ResultItem
 import Header from '../components/Header';
-const results = [
-    {
-        id: 1,
-        title: 'Chế tạo mô hình máy uốn ống sử dụng con lăn để giảm ma sát',
-        imageUrl: 'https://thuvienso.hcmute.edu.vn/images/libedu/document/thumbnail/2023/20231114/hcmute/thehoangthk/80x100/hcmute_1699936564.jpg',
-        description: 'Thiết kế và chế tạo máy kiểm tra tốc độ vòng quay đạt chuẩn của các dạng cốc bi trong ngành công nghiệp băng tải cho công ty Intech Group: Ðồ án tốt nghiệp ngành Công nghệ kỹ thuật cơ khí/ Nguyễn Trí Hưng, Nguyễn Hiếu Lễ, Nguyễn Hoàng Vũ; Phan Thanh Vũ ( Giảng viên hướng dẫn )--Tp. Hồ Chí Minh: Đại học Sư phạm Kỹ thuật Tp. Hồ Chí Minh, 2023 Call.',
-        date: '01/01/2023',
-        downloadLink: 'link_tai_xuong_1.zip',
-    },
-    {
-        id: 2,
-        title: 'Nghiên cứu, thiết kế, chế tạo bàn vẽ tranh cát',
-        imageUrl: 'https://thuvienso.hcmute.edu.vn/images/libedu/document/thumbnail/2023/20231114/hcmute/thehoangthk/80x100/hcmute_1699936564.jpg',
-        description: 'Thiết kế và chế tạo máy kiểm tra tốc độ vòng quay đạt chuẩn của các dạng cốc bi trong ngành công nghiệp băng tải cho công ty Intech Group: Ðồ án tốt nghiệp ngành Công nghệ kỹ thuật cơ khí/ Nguyễn Trí Hưng, Nguyễn Hiếu Lễ, Nguyễn Hoàng Vũ; Phan Thanh Vũ ( Giảng viên hướng dẫn )--Tp. Hồ Chí Minh: Đại học Sư phạm Kỹ thuật Tp. Hồ Chí Minh, 2023 Call.',
-        date: '01/01/2023',
-        downloadLink: 'link_tai_xuong_1.zip',
-    },
-    {
-        id: 3,
-        title: 'Nghiên cứu, thiết kế và chế tạo Robot chơi đàn Piano',
-        imageUrl: 'https://thuvienso.hcmute.edu.vn/images/libedu/document/thumbnail/2023/20231114/hcmute/thehoangthk/80x100/hcmute_1699936564.jpg',
-        description: 'Thiết kế và chế tạo máy kiểm tra tốc độ vòng quay đạt chuẩn của các dạng cốc bi trong ngành công nghiệp băng tải cho công ty Intech Group: Ðồ án tốt nghiệp ngành Công nghệ kỹ thuật cơ khí/ Nguyễn Trí Hưng, Nguyễn Hiếu Lễ, Nguyễn Hoàng Vũ; Phan Thanh Vũ ( Giảng viên hướng dẫn )--Tp. Hồ Chí Minh: Đại học Sư phạm Kỹ thuật Tp. Hồ Chí Minh, 2023 Call.',
-        date: '01/01/2023',
-        downloadLink: 'link_tai_xuong_1.zip',
-    },
-    {
-        id: 4,
-        title: 'Thiết kế và chế tạo máy kiểm tra tốc độ vòng quay đạt chuẩn của các dạng cốc bi trong ngành công nghiệp băng tải cho công ty Intech Group',
-        imageUrl: 'https://thuvienso.hcmute.edu.vn/images/libedu/document/thumbnail/2023/20231114/hcmute/thehoangthk/80x100/hcmute_1699936564.jpg',
-        description: 'Thiết kế và chế tạo máy kiểm tra tốc độ vòng quay đạt chuẩn của các dạng cốc bi trong ngành công nghiệp băng tải cho công ty Intech Group: Ðồ án tốt nghiệp ngành Công nghệ kỹ thuật cơ khí/ Nguyễn Trí Hưng, Nguyễn Hiếu Lễ, Nguyễn Hoàng Vũ; Phan Thanh Vũ ( Giảng viên hướng dẫn )--Tp. Hồ Chí Minh: Đại học Sư phạm Kỹ thuật Tp. Hồ Chí Minh, 2023 Call.',
-        date: '01/01/2023',
-        downloadLink: 'link_tai_xuong_1.zip',
-    },
-    {
-      id: 5,
-      title: 'Nghiên cứu tối ưu hóa mặt bằng để nâng cao năng suất trong nhà máy ly nhựa quấn giấy',
-      imageUrl: 'https://thuvienso.hcmute.edu.vn/images/libedu/document/thumbnail/2023/20231114/hcmute/thehoangthk/80x100/hcmute_1699936564.jpg',
-      description: 'Thiết kế và chế tạo máy kiểm tra tốc độ vòng quay đạt chuẩn của các dạng cốc bi trong ngành công nghiệp băng tải cho công ty Intech Group: Ðồ án tốt nghiệp ngành Công nghệ kỹ thuật cơ khí/ Nguyễn Trí Hưng, Nguyễn Hiếu Lễ, Nguyễn Hoàng Vũ; Phan Thanh Vũ ( Giảng viên hướng dẫn )--Tp. Hồ Chí Minh: Đại học Sư phạm Kỹ thuật Tp. Hồ Chí Minh, 2023 Call.',
-      date: '01/01/2023',
-      downloadLink: 'link_tai_xuong_1.zip',
-    },
-    {
-      id: 6,
-      title: 'Nghiên cứu tối ưu hóa mặt bằng để nâng cao năng suất trong nhà máy ly nhựa quấn giấy',
-      imageUrl: 'https://thuvienso.hcmute.edu.vn/images/libedu/document/thumbnail/2023/20231114/hcmute/thehoangthk/80x100/hcmute_1699936564.jpg',
-      description: 'Thiết kế và chế tạo máy kiểm tra tốc độ vòng quay đạt chuẩn của các dạng cốc bi trong ngành công nghiệp băng tải cho công ty Intech Group: Ðồ án tốt nghiệp ngành Công nghệ kỹ thuật cơ khí/ Nguyễn Trí Hưng, Nguyễn Hiếu Lễ, Nguyễn Hoàng Vũ; Phan Thanh Vũ ( Giảng viên hướng dẫn )--Tp. Hồ Chí Minh: Đại học Sư phạm Kỹ thuật Tp. Hồ Chí Minh, 2023 Call.',
-      date: '01/01/2023',
-      downloadLink: 'link_tai_xuong_1.zip',
-    },
-    {
-      id: 7,
-      title: 'Nghiên cứu tối ưu hóa mặt bằng để nâng cao năng suất trong nhà máy ly nhựa quấn giấy',
-      imageUrl: 'https://thuvienso.hcmute.edu.vn/images/libedu/document/thumbnail/2023/20231114/hcmute/thehoangthk/80x100/hcmute_1699936564.jpg',
-      description: 'Thiết kế và chế tạo máy kiểm tra tốc độ vòng quay đạt chuẩn của các dạng cốc bi trong ngành công nghiệp băng tải cho công ty Intech Group: Ðồ án tốt nghiệp ngành Công nghệ kỹ thuật cơ khí/ Nguyễn Trí Hưng, Nguyễn Hiếu Lễ, Nguyễn Hoàng Vũ; Phan Thanh Vũ ( Giảng viên hướng dẫn )--Tp. Hồ Chí Minh: Đại học Sư phạm Kỹ thuật Tp. Hồ Chí Minh, 2023 Call.',
-      date: '01/01/2023',
-      downloadLink: 'link_tai_xuong_1.zip',
-    },
-    // Thêm các kết quả khác vào đây
-  ];
+import projectApi from '../api/projectAPI';
+// const results = [
+//     {
+//         id: 1,
+//         title: 'Chế tạo mô hình máy uốn ống sử dụng con lăn để giảm ma sát',
+//         imageUrl: 'https://thuvienso.hcmute.edu.vn/images/libedu/document/thumbnail/2023/20231114/hcmute/thehoangthk/80x100/hcmute_1699936564.jpg',
+//         description: 'Thiết kế và chế tạo máy kiểm tra tốc độ vòng quay đạt chuẩn của các dạng cốc bi trong ngành công nghiệp băng tải cho công ty Intech Group: Ðồ án tốt nghiệp ngành Công nghệ kỹ thuật cơ khí/ Nguyễn Trí Hưng, Nguyễn Hiếu Lễ, Nguyễn Hoàng Vũ; Phan Thanh Vũ ( Giảng viên hướng dẫn )--Tp. Hồ Chí Minh: Đại học Sư phạm Kỹ thuật Tp. Hồ Chí Minh, 2023 Call.',
+//         date: '01/01/2023',
+//         downloadLink: 'link_tai_xuong_1.zip',
+//     },
+//     {
+//         id: 2,
+//         title: 'Nghiên cứu, thiết kế, chế tạo bàn vẽ tranh cát',
+//         imageUrl: 'https://thuvienso.hcmute.edu.vn/images/libedu/document/thumbnail/2023/20231114/hcmute/thehoangthk/80x100/hcmute_1699936564.jpg',
+//         description: 'Thiết kế và chế tạo máy kiểm tra tốc độ vòng quay đạt chuẩn của các dạng cốc bi trong ngành công nghiệp băng tải cho công ty Intech Group: Ðồ án tốt nghiệp ngành Công nghệ kỹ thuật cơ khí/ Nguyễn Trí Hưng, Nguyễn Hiếu Lễ, Nguyễn Hoàng Vũ; Phan Thanh Vũ ( Giảng viên hướng dẫn )--Tp. Hồ Chí Minh: Đại học Sư phạm Kỹ thuật Tp. Hồ Chí Minh, 2023 Call.',
+//         date: '01/01/2023',
+//         downloadLink: 'link_tai_xuong_1.zip',
+//     },
+//     {
+//         id: 3,
+//         title: 'Nghiên cứu, thiết kế và chế tạo Robot chơi đàn Piano',
+//         imageUrl: 'https://thuvienso.hcmute.edu.vn/images/libedu/document/thumbnail/2023/20231114/hcmute/thehoangthk/80x100/hcmute_1699936564.jpg',
+//         description: 'Thiết kế và chế tạo máy kiểm tra tốc độ vòng quay đạt chuẩn của các dạng cốc bi trong ngành công nghiệp băng tải cho công ty Intech Group: Ðồ án tốt nghiệp ngành Công nghệ kỹ thuật cơ khí/ Nguyễn Trí Hưng, Nguyễn Hiếu Lễ, Nguyễn Hoàng Vũ; Phan Thanh Vũ ( Giảng viên hướng dẫn )--Tp. Hồ Chí Minh: Đại học Sư phạm Kỹ thuật Tp. Hồ Chí Minh, 2023 Call.',
+//         date: '01/01/2023',
+//         downloadLink: 'link_tai_xuong_1.zip',
+//     },
+//     {
+//         id: 4,
+//         title: 'Thiết kế và chế tạo máy kiểm tra tốc độ vòng quay đạt chuẩn của các dạng cốc bi trong ngành công nghiệp băng tải cho công ty Intech Group',
+//         imageUrl: 'https://thuvienso.hcmute.edu.vn/images/libedu/document/thumbnail/2023/20231114/hcmute/thehoangthk/80x100/hcmute_1699936564.jpg',
+//         description: 'Thiết kế và chế tạo máy kiểm tra tốc độ vòng quay đạt chuẩn của các dạng cốc bi trong ngành công nghiệp băng tải cho công ty Intech Group: Ðồ án tốt nghiệp ngành Công nghệ kỹ thuật cơ khí/ Nguyễn Trí Hưng, Nguyễn Hiếu Lễ, Nguyễn Hoàng Vũ; Phan Thanh Vũ ( Giảng viên hướng dẫn )--Tp. Hồ Chí Minh: Đại học Sư phạm Kỹ thuật Tp. Hồ Chí Minh, 2023 Call.',
+//         date: '01/01/2023',
+//         downloadLink: 'link_tai_xuong_1.zip',
+//     },
+//     {
+//       id: 5,
+//       title: 'Nghiên cứu tối ưu hóa mặt bằng để nâng cao năng suất trong nhà máy ly nhựa quấn giấy',
+//       imageUrl: 'https://thuvienso.hcmute.edu.vn/images/libedu/document/thumbnail/2023/20231114/hcmute/thehoangthk/80x100/hcmute_1699936564.jpg',
+//       description: 'Thiết kế và chế tạo máy kiểm tra tốc độ vòng quay đạt chuẩn của các dạng cốc bi trong ngành công nghiệp băng tải cho công ty Intech Group: Ðồ án tốt nghiệp ngành Công nghệ kỹ thuật cơ khí/ Nguyễn Trí Hưng, Nguyễn Hiếu Lễ, Nguyễn Hoàng Vũ; Phan Thanh Vũ ( Giảng viên hướng dẫn )--Tp. Hồ Chí Minh: Đại học Sư phạm Kỹ thuật Tp. Hồ Chí Minh, 2023 Call.',
+//       date: '01/01/2023',
+//       downloadLink: 'link_tai_xuong_1.zip',
+//     },
+//     {
+//       id: 6,
+//       title: 'Nghiên cứu tối ưu hóa mặt bằng để nâng cao năng suất trong nhà máy ly nhựa quấn giấy',
+//       imageUrl: 'https://thuvienso.hcmute.edu.vn/images/libedu/document/thumbnail/2023/20231114/hcmute/thehoangthk/80x100/hcmute_1699936564.jpg',
+//       description: 'Thiết kế và chế tạo máy kiểm tra tốc độ vòng quay đạt chuẩn của các dạng cốc bi trong ngành công nghiệp băng tải cho công ty Intech Group: Ðồ án tốt nghiệp ngành Công nghệ kỹ thuật cơ khí/ Nguyễn Trí Hưng, Nguyễn Hiếu Lễ, Nguyễn Hoàng Vũ; Phan Thanh Vũ ( Giảng viên hướng dẫn )--Tp. Hồ Chí Minh: Đại học Sư phạm Kỹ thuật Tp. Hồ Chí Minh, 2023 Call.',
+//       date: '01/01/2023',
+//       downloadLink: 'link_tai_xuong_1.zip',
+//     },
+//     {
+//       id: 7,
+//       title: 'Nghiên cứu tối ưu hóa mặt bằng để nâng cao năng suất trong nhà máy ly nhựa quấn giấy',
+//       imageUrl: 'https://thuvienso.hcmute.edu.vn/images/libedu/document/thumbnail/2023/20231114/hcmute/thehoangthk/80x100/hcmute_1699936564.jpg',
+//       description: 'Thiết kế và chế tạo máy kiểm tra tốc độ vòng quay đạt chuẩn của các dạng cốc bi trong ngành công nghiệp băng tải cho công ty Intech Group: Ðồ án tốt nghiệp ngành Công nghệ kỹ thuật cơ khí/ Nguyễn Trí Hưng, Nguyễn Hiếu Lễ, Nguyễn Hoàng Vũ; Phan Thanh Vũ ( Giảng viên hướng dẫn )--Tp. Hồ Chí Minh: Đại học Sư phạm Kỹ thuật Tp. Hồ Chí Minh, 2023 Call.',
+//       date: '01/01/2023',
+//       downloadLink: 'link_tai_xuong_1.zip',
+//     },
+//     // Thêm các kết quả khác vào đây
+//   ];
   const Reference = () => {
     const [currentPage, setCurrentPage] = useState(1);
+    const [results, setResults] = useState([]);
+    const [loading, setLoading] = useState(true);
     const resultsPerPage = 5; // Số kết quả trên mỗi trang
-    const totalResults = results.length;
+    const totalResults = results?.length || 0;
     const pageCount = Math.ceil(totalResults / resultsPerPage);
     const MAX_DISPLAY_PAGES = 5; // Số trang tối đa được hiển thị trước khi thêm "..."
   
@@ -74,8 +77,28 @@ const results = [
   
     const startIndex = Math.max(0, Math.min((currentPage - 1) * resultsPerPage, totalResults - resultsPerPage));
     const endIndex = Math.min(startIndex + resultsPerPage, totalResults);
-    const displayedResults = results.slice(startIndex, endIndex);
+    const displayedResults = results?.slice(startIndex, endIndex) || [];
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const response = await projectApi.published();
+          console.log(response)
+          setResults(response);
+          setLoading(false);
+        } catch (error) {
+          console.error('Error fetching data:', error);
+          setLoading(false);
+        }
+      };
   
+      fetchData();
+    }, []); 
+  
+    // Use useEffect to handle changes in results
+    useEffect(() => {
+      // Do something when results change, if needed
+      console.log('Results have been updated:', results);
+    }, [results]);
     return (
       <div className="flex flex-col h-screen bg-gray-50 dark:bg-gray-900">
         <div>
@@ -85,20 +108,25 @@ const results = [
           <div className="grid grid-cols-5">
             <div className="col-span-1"></div>
             <div className="col-span-3 flex flex-col relative">
+            {loading ? (
+              <p>Loading...</p>
+            ) : (
+              <>
+
               <header className="py-4 text-black bg-white text-center">
                 <h1 className="text-2xl font-bold text-blue-500">Tài liệu tham khảo</h1>
               </header>
-              <div class="flex justify-between items-center p-4 text-gray-600">
+              <div className="flex justify-between items-center p-4 text-gray-600">
               <div>
                 Kết quả {startIndex + 1} - {endIndex} trong tổng số {totalResults}
               </div>
-              <div class="flex items-center">
+              <div className="flex items-center">
                 <input
                   type="text"
                   placeholder="Tìm kiếm..."
-                  class="border border-gray-300 p-2 rounded-md"
+                  className="border border-gray-300 p-2 rounded-md"
                 />
-                <button class="ml-2 bg-blue-500 text-white p-2 rounded-md">
+                <button className="ml-2 bg-blue-500 text-white p-2 rounded-md">
                   Tìm kiếm
                 </button>
               </div>
@@ -195,6 +223,8 @@ const results = [
                   </a>
                 </nav>
               </div>
+              </>
+              )}
               <h3>Tin tức nổi bật</h3>
             </div>
             <div className="col-span-1"></div>

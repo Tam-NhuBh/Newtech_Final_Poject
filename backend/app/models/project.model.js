@@ -7,7 +7,7 @@ module.exports = mongoose => {
         final: String,
         finallink: String,
       },
-      key: [String],
+      keyword: [String],
       title: String,
       idpro: String,
       idteacher: String,
