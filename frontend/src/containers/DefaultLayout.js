@@ -8,19 +8,15 @@ import Main from '../containers/Main'
 import ThemedSuspense from '../components/ThemedSuspense'
 import { SidebarContext } from '../context/SidebarContext'
 import NavHeader from '../components/NavHeader';
+import Notification from '../pages/HomePage/components/NotificationList/Notification';
+
 
 const Page404 = lazy(() => import('../pages/404'))
 
-function Layout() {
-  const { isSidebarOpen, closeSidebar } = useContext(SidebarContext)
-  let location = useLocation()
-
-  useEffect(() => {
-    closeSidebar()
-  }, [location])
+function DefaultLayout() {
 
   return (
-    <div className={`flex flex-col h-screen bg-gray-50 dark:bg-gray-900 ${isSidebarOpen && 'overflow-hidden'}`}>
+    <div className={`flex flex-col h-screen bg-gray-50 dark:bg-gray-900 `}>
 
       <NavHeader />
       
@@ -28,21 +24,9 @@ function Layout() {
 
       <div className="flex flex-col flex-1 w-full">
         <Main>
-          <Suspense fallback={<ThemedSuspense />}>
-            <Switch>
-              {routes.map((route, i) => {
-                return route.component ? (
-                  <Route
-                    key={i}
-                    exact={true}
-                    path={`/app${route.path}`}
-                    render={(props) => <route.component {...props} />}
-                  />
-                ) : null
-              })}
-              <Route component={Page404} />
-            </Switch>
-          </Suspense>
+
+            <Notification/>
+
         </Main>
       </div>
       </div>
@@ -50,4 +34,4 @@ function Layout() {
   )
 }
 
-export default Layout
+export default DefaultLayout
