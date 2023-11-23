@@ -1,6 +1,19 @@
 const express = require("express");
 const cors = require("cors");
+const cookieSession = require('cookie-session');
+// Google Login API
+const keys = require('./config/key');
 
+const passport = require('passport');
+// Cookie session
+const cookieSession = require('cookie-session');
+require('./services/passport');
+app.use(cookieSession({
+  maxAge: (30 * 24 * 60 * 60 * 1000),
+  keys: [keys.cookieKey]
+}));
+
+// Initialize Express
 const app = express();
 
 const corsOptions = {
@@ -34,11 +47,16 @@ db.mongoose
 
 // simple route
 app.get("/", (req, res) => {
-  res.json({ message: "Welcome to bezkoder application." });
+  res.json({ message: "Welcome to TTN application." });
 });
+
+// Get password from Google
+app.use(passport.initialize());
+app.use(passport.session());
 
 require("./app/routes/turorial.routes")(app);
 require("./app/routes/project.routes")(app);
+require("./app/routes/auth.routes")(app);
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
