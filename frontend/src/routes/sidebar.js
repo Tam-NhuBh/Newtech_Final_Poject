@@ -10,11 +10,7 @@ const routes = [
     name: 'Profile',
   },
 
-  {
-    path: '/app/buttons',
-    icon: 'ButtonsIcon',
-    name: 'Buttons',
-  },
+
 
   {
     icon: 'PagesIcon',

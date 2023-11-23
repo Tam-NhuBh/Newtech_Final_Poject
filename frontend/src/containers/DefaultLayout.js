@@ -8,7 +8,8 @@ import Main from '../containers/Main'
 import ThemedSuspense from '../components/ThemedSuspense'
 import { SidebarContext } from '../context/SidebarContext'
 import NavHeader from '../components/NavHeader';
-import Notification from '../pages/HomePage/components/NotificationList/Notification';
+import Notification from '../pages/Newfeeds/Newfeeds';
+import Newfeeds from '../pages/Newfeeds/Newfeeds'
 
 
 const Page404 = lazy(() => import('../pages/404'))
@@ -25,7 +26,7 @@ function DefaultLayout() {
       <div className="flex flex-col flex-1 w-full">
         <Main>
 
-            <Notification/>
+            <Newfeeds/>
 
         </Main>
       </div>

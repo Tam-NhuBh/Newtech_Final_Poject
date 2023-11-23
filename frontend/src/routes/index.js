@@ -5,10 +5,9 @@ import { lazy } from 'react'
 
 const Profile = lazy(() => import('../pages/Profile/Profile.js'))
 
-const Forms = lazy(() => import('../pages/Forms'))
+const Newfeeds = lazy(() => import('../pages/Newfeeds/Newfeeds'))
 const Notification = lazy(() => import('../pages/HomePage/components/NotificationList/Notification'))
-
-
+const Detailfeed = lazy(() => import('../pages/Detailfeed/detailfeed.js'))
 
 const routes = [
   {
@@ -19,26 +18,16 @@ const routes = [
     path: '/profile',
     component: Profile,
   },
-  // {
-  //   path: '/cards',
-  //   component: Cards,
-  // },
-  // {
-  //   path: '/charts',
-  //   component: Charts,
-  // },
-  // {
-  //   path: '/buttons',
-  //   component: Buttons,
-  // },
-  // {
-  //   path: '/modals',
-  //   component: Modals,
-  // },
-  // {
-  //   path: '/tables',
-  //   component: Tables,
-  // },
+
+  {
+    path: '/newfeeds',
+    component: Newfeeds,
+  },
+  
+  {
+    path: '/detailfeed',
+    component: Detailfeed,
+  },
   // {
   //   path: '/404',
   //   component: Page404,
