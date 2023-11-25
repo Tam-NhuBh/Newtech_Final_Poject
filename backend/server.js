@@ -1,17 +1,17 @@
 const express = require("express");
 const cors = require("cors");
-const cookieSession = require('cookie-session');
+require('dotenv').config();
 // Google Login API
-const keys = require('./config/key');
+const keys = require('./app/config/key');
 
 const passport = require('passport');
 // Cookie session
-const cookieSession = require('cookie-session');
-require('./services/passport');
-app.use(cookieSession({
-  maxAge: (30 * 24 * 60 * 60 * 1000),
-  keys: [keys.cookieKey]
-}));
+// const cookieSession = require('cookie-session');
+require('./app/services/passport');
+// app.use(cookieSession({
+//   maxAge: (30 * 24 * 60 * 60 * 1000),
+//   keys: [keys.cookieKey]
+// }));
 
 // Initialize Express
 const app = express();
