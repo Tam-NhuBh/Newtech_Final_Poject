@@ -1,8 +1,12 @@
 import axiosClient from "./axiosClient";
 
 const userApi = {
-  login(data) {
-    const url = "/student/login";
+  signIn(data) {
+    const url = "/user/signin";
+    return axiosClient.post(url, data);
+  },
+  signUp(data) {
+    const url = "/user/signup";
     return axiosClient.post(url, data);
   },
   loginTeacher(data) {

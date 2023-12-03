@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 require('dotenv').config();
+const session = require('express-session');
 // Google Login API
 const keys = require('./app/config/key');
 
@@ -51,6 +52,7 @@ app.get("/", (req, res) => {
 });
 
 // Get password from Google
+app.use(session({ secret: 'tnhubh', resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 
