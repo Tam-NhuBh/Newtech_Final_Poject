@@ -2,9 +2,9 @@ import React, { useContext } from 'react';
 import {
   MoonIcon,
   SunIcon,
-} from '../icons';
+} from '../../icons';
 import { WindmillContext } from '@windmill/react-ui';
-import logo from '../assets/img/logo.png';
+import logo from '../../assets/img/logo.png';
 
 import { Link } from 'react-router-dom';
 

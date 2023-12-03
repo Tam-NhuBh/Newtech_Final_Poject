@@ -3,11 +3,11 @@ import { Switch, Route, Redirect, useLocation } from 'react-router-dom'
 import routes from '../routes'
 
 import Sidebar from '../components/Sidebar'
-import Header from '../components/Header'
+import Header from '../components/Header/Header'
 import Main from '../containers/Main'
 import ThemedSuspense from '../components/ThemedSuspense'
 import { SidebarContext } from '../context/SidebarContext'
-import NavHeader from '../components/NavHeader';
+import NavHeader from '../components/Header/NavHeader';
 import Notification from '../pages/Newfeeds/Newfeeds';
 import Newfeeds from '../pages/Newfeeds/Newfeeds'
 

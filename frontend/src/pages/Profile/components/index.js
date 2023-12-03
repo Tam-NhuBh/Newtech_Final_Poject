@@ -1,11 +1,11 @@
 export const mockFaculties = [
-    {  name: 'Faculty 1' },
-    {  name: 'Faculty 2' },
-    { name: 'Faculty 3' },
+    {id: '1',  name: 'Faculty 1' },
+    {id: '2',  name: 'Faculty 2' },
+    { id: '3',name: 'Faculty 3' },
   ];
 
   export const mockGenders = [
-    {  name: 'Male' },
-    {  name: 'Female' },
+    { id: '1', name: 'Male' },
+    { id: '2', name: 'Female' },
   ];
 

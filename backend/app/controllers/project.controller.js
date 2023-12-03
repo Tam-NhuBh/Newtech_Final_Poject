@@ -35,7 +35,19 @@ exports.findAllPublished = (req, res) => {
       });
     });
 };
-
+// Find all published Projects
+exports.findAllStarts = (req, res) => {
+  Project.find({ status: "begin" })
+    .then(data => {
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving Projects."
+      });
+    });
+};
 exports.downloadFilePdf = (req, res) => {
   try {
     const { filePath } = req.query;

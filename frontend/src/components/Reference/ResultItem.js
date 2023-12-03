@@ -2,6 +2,7 @@
 import React from 'react';
 import './ResultItem.css';
 import { buildImageUrl } from '../../constraints/common';
+import { Link } from 'react-router-dom';
 const ResultItem = ({id, title, description, time, file }) => {
   const handleTitleClick = () => {
     // Thêm logic xử lý khi title được click, ví dụ mở Reference detail
@@ -11,7 +12,9 @@ const ResultItem = ({id, title, description, time, file }) => {
   return (
       <div className="result-item relative mb-5 border p-1 shadow-md">
         <div className="data-column">
-        <h3 onClick={handleTitleClick} className="text-lg w-full h-full">{title}</h3>
+        <h3 onClick={handleTitleClick} className="text-lg w-full h-full">
+          <Link to={`/reference/${id}`}>{title}</Link> 
+        </h3>
         </div>
         <div className="other-columns">
           <div className="custom-image-container my-3 mx-3">

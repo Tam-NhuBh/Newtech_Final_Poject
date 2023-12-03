@@ -19,6 +19,7 @@ function ReferenceDetail() {
         <Page pageNumber={pageNumber} renderTextLayer={false}  renderAnnotationLayer/>
       </Document>
       <p>Page {pageNumber} of {numPages}</p> */}
+      Detailfeedback
     </div>
   );
 }

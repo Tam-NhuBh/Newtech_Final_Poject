@@ -26,8 +26,11 @@ import { ReactComponent as DropdownIcon } from './dropdown.svg'
 import { ReactComponent as OutlinePersonIcon } from './outlinePerson.svg'
 import { ReactComponent as OutlineCogIcon } from './outlineCog.svg'
 import { ReactComponent as OutlineLogoutIcon } from './outlineLogout.svg'
-
+import { ReactComponent as GoogleIcon } from './google.svg'
+import { ReactComponent as LoginIcon } from './login.svg'
 export {
+  LoginIcon,
+  GoogleIcon,
   ButtonsIcon,
   CardsIcon,
   ChartsIcon,

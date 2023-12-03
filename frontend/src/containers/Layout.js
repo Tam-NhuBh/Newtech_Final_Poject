@@ -7,7 +7,7 @@ import { connect, useDispatch, useSelector } from 'react-redux';
 import { loginSuccess } from '../actions/userActions';
 import routes from '../routes';
 import Sidebar from '../components/Sidebar';
-import Header from '../components/Header';
+import Header from '../components/Header/Header';
 import Main from '../containers/Main';
 import ThemedSuspense from '../components/ThemedSuspense';
 import { SidebarContext } from '../context/SidebarContext';
@@ -28,8 +28,9 @@ function Layout() {
       // Decode the JWT token to get user information
       const decodedToken = jwtDecode(authToken);
       const userToken = decodedToken.user;
-
+      Cookies.remove('authToken');
       console.log("userToken",userToken);
+      localStorage.setItem('user', JSON.stringify(userToken));
       dispatch(loginSuccess({ user: userToken}));
 
       // Redirect to the desired route

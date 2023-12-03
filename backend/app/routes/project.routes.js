@@ -7,6 +7,7 @@ module.exports = app => {
     // Retrieve all Projects
     router.get("/", projects.findAll);
     router.get("/published", projects.findAllPublished);
+    router.get("/starts", projects.findAllStarts);
     router.get("/downloadfile", projects.downloadFilePdf);
     router.get("/images", (req, res) => {
       const { imagePath } = req.query;

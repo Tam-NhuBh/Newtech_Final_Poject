@@ -57,36 +57,24 @@ function Newfeeds() {
   return (
     <>
     <div className="flex flex-col items-center justify-center">
-
       <PageTitle>News Feed</PageTitle>
-
       <TableContainer className="mb-8">
-      
         <Table className="border">
-
-            <TableBody >   {/*dataTable1 dưới dạng các hàng trong một bảng 
-                            map để lặp qua mỗi phần tử trong dataTable1 */}
+            <TableBody >   
               {dataTable1.map((guest, i) =>  (   
                 <TableRow key={i}> 
                   <TableCell>
                       <div>
                         <Link to={`/detailfeed/${guest.id}`}> {/* Tạo liên kết đến trang chi tiết */}
-
                           <p className="font-semibold">{guest.content}</p>
                         </Link>
                           <p className="text-xs text-gray-600 dark:text-gray-400">{guest.description}</p>
                       </div>
-
                   </TableCell>
-
-
                 </TableRow>
               ))}
-
               </TableBody>
-         
         </Table>
-
         {/* tinh tong page */}
         <TableFooter>
           <Pagination
@@ -97,11 +85,8 @@ function Newfeeds() {
           />
         </TableFooter>
       </TableContainer>
-    
     </div>
-
     </>
-
   )
 }
 

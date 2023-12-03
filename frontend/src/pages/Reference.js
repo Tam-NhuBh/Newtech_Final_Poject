@@ -1,7 +1,7 @@
 import React, { useState,useEffect  } from 'react';
 import ReactPaginate from 'react-paginate';
 import ResultItem from '../components/Reference/ResultItem'; // Đường dẫn đến component ResultItem
-import Header from '../components/Header';
+import Header from '../components/Header/Header';
 import projectApi from '../api/projectAPI';
 // const results = [
 //     {

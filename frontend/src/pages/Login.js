@@ -3,14 +3,10 @@ import { Link, useHistory  } from 'react-router-dom'
 
 import ImageLight from '../assets/img/login-office.jpeg'
 import ImageDark from '../assets/img/login-office-dark.jpeg'
-import { GithubIcon, TwitterIcon } from '../icons'
+import { LoginIcon, GoogleIcon } from '../icons'
 import { Label, Input, Button } from '@windmill/react-ui'
-import  loginApi  from '../api/googleAuth';
-import { useDispatch } from 'react-redux';
 
-import { loginSuccess , signup } from '../actions/userActions';
-import { AUTH } from '../constraints/actionTypes';
-
+import '@fortawesome/fontawesome-svg-core/styles.css';
 
 
 const initialState = { firstName: '', lastName: '', email: '', password: '', confirmPassword: '' };
@@ -27,17 +23,24 @@ function Login() {
 
     // Inject the google provided script 
     // (an importable module would be nicer here)
-    const script = document.createElement('script');
-    script.src = "https://accounts.google.com/gsi/client";
-    script.async = true;
-    document.body.appendChild(script);
+    // const script = document.createElement('script');
+    // script.src = "https://accounts.google.com/gsi/client";
+    // script.async = true;
+    // document.body.appendChild(script);
 
     return () => {
       // clean up for react lifecycle
       window.onGoogleSuccess = undefined;
-      document.body.removeChild(script)
+      //document.body.removeChild(script)
     }
   }, []);
+  const handleGoogleLoginClick = () => {
+    console.log("handleGoogleLoginClick")
+    // Trigger Google login when the button is clicked
+    if (window.onGoogleSuccess) {
+      window.onGoogleSuccess();
+    }
+  };
   return (
     <div className="flex items-center min-h-screen p-6 bg-gray-50 dark:bg-gray-900">
       <div className="flex-1 h-full max-w-4xl mx-auto overflow-hidden bg-white rounded-lg shadow-xl dark:bg-gray-800">
@@ -72,34 +75,19 @@ function Login() {
 
 
               <hr className="my-8" />
-
-              <Button block layout="outline"  >
-                <GithubIcon className="w-4 h-4 mr-2" aria-hidden="true"  />
-                Github
-              </Button>
-              <Button className="mt-4" block layout="outline">
-                <TwitterIcon className="w-4 h-4 mr-2" aria-hidden="true" />
-                Twitter
+              <Button className="mt-6" block layout="outline">
+                <LoginIcon className="w-6 h-6 mr-2" aria-hidden="true" />
+                Login
               </Button>
 
+              <Button className="mt-6" block layout="outline" onClick={handleGoogleLoginClick}>
+                <GoogleIcon className="w-6 h-6 mr-2" aria-hidden="true"  />
+                Google
+              </Button>
 
-                <div id="g_id_onload"
-                  data-client_id={"334206124572-ev4hmlf84egst4rlsv4j9rih12ao56bl.apps.googleusercontent.com"}
-                  data-callback="onGoogleSuccess" // as defined above
-                  data-context="signin"
-                  data-ux_mode="popup"
-                  data-auto_prompt="false">
-                </div>
+              
 
-                <div className="g_id_signin"
-                  data-type="standard"
-                  data-shape="rectangular"
-                  data-theme="filled_blue"
-                  data-text="signin_with"
-                  data-size="large"
-                  data-logo_alignment="left">
-                </div>
-
+   
               <p className="mt-4">
                 <Link
                   className="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline"
