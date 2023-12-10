@@ -9,9 +9,11 @@ const routes = [
     icon: 'FormsIcon',
     name: 'Profile',
   },
-
-
-
+  {
+    path: '/app/register',
+    icon: 'FormsIcon',
+    name: 'Register',
+  },
   {
     icon: 'PagesIcon',
     name: 'Pages',

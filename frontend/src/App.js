@@ -6,6 +6,8 @@ import AccessibleNavigationAnnouncer from './components/AccessibleNavigationAnno
 import { Provider } from 'react-redux';
 import store from './redux';
 import ReferenceDetail from './components/Reference/ReferenceDetail';
+
+const RegisterProjectStudent= lazy( '../pages/RegisterProjectStudent/index')
 const Layout = lazy(() => import('./containers/Layout'))
 const DefaultLayout = lazy(() => import('./containers/DefaultLayout'))
 const Login = lazy(() => import('./pages/Login'))
@@ -15,7 +17,7 @@ const Reference = lazy(() => import('./pages/Reference'))
 const DetailReference = lazy(() => import('./components/Reference/ReferenceDetail'))
 const Newsfeed = lazy(() => import('./pages/Newfeeds/Newfeeds'))
 const Detailfeed= lazy(() => import('./pages/Detailfeed/detailfeed'))
-
+const ProjectDetail= lazy(() => import('./pages/RegisterProjectStudent/components/ProjectDetail/ProjectDetail'))
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Mặc định là false
@@ -42,9 +44,11 @@ function App() {
             <Route path="/reference/:id" component={DetailReference} />
             <Route path="/app" component={Layout} />
             <Route path="/newsfeed" component={Newsfeed} />
+            {/* <Route path="/register" component={RegisterProjectStudent} /> */}
             <Route path="/detailfeed/:id" component={Detailfeed} />
-
-
+            
+            <Route path="/app/register" component={RegisterProjectStudent} />
+            <Route path="/app/register/:id" component={ProjectDetail} />
             {/* Route mặc định */}
             <Route  path="/">
               {user?.email ? <Redirect to="/app" /> : <DefaultLayout />}
