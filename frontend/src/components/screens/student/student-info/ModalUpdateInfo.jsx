@@ -12,8 +12,15 @@ import SelectMajor from "../../../common/SelectMajor";
 function ModalUpdateInfo({ data, setData, open, handleClose, handleOk }) {
   return (
     <ModalUpdate open={open} handleClose={handleClose} handleOk={handleOk}>
-      <Grid container spacing={2} my={2}>
-        <Grid item xs={6}>
+      <Grid
+          container
+          spacing={2}
+          my={2}
+          sx={{
+            backgroundColor: '#d9e9f9',
+            opacity: 0.9,
+          }}
+        >        <Grid item xs={6}>
           <TextField
             fullWidth
             label="Họ và tên"

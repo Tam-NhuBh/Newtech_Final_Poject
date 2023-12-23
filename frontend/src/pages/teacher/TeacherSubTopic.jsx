@@ -4,88 +4,85 @@ import MainLayout from "../../components/layout/MainLayout";
 import { findUser } from "../../utils/api/user";
 import { create } from "../../utils/api/topic";
 import { notify } from "../../utils/helpers/notify";
-
 function TeacherSubTopic() {
-  const [currentUser, setCurrentUser] = useState({});
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+  const [loggedInUser, setLoggedInUser] = useState({});
+  const [topicTitle, setTopicTitle] = useState("");
+  const [topicDescription, setTopicDescription] = useState("");
 
-  const handleClear = () => {
-    setTitle("");
-    setDescription("");
-  };
-
-  const handleCreateTopic = async (e) => {
+  const handleSubmitTopic = async (e) => {
     try {
       e.preventDefault();
       await create({
-        title,
-        description,
-        teacher: currentUser?._id,
-        major: currentUser?.major?._id,
-        owner: currentUser?._id,
+        title: topicTitle,
+        description: topicDescription,
+        teacherId: loggedInUser?._id,
+        majorId: loggedInUser?.major?._id,
+        ownerId: loggedInUser?._id,
       });
-      notify("success", "Thêm đề tài thành công");
-      handleClear();
+      notify("success", "Successfully added a new topic");
     } catch (error) {
       console.log(error);
     }
   };
 
   useEffect(() => {
-    const getCurrentUser = async () => {
+    const fetchData = async () => {
       try {
         const id = JSON.parse(localStorage.getItem("user"))._id;
-        const res = await findUser(id);
-        setCurrentUser(res.data);
+        const response = await  findUser(id);
+        setLoggedInUser(response.data);
       } catch (error) {
         console.log(error);
       }
     };
-    getCurrentUser();
+    fetchData();
   }, []);
 
   return (
     <MainLayout>
       <Button fullWidth size="large" variant="contained">
-        Đăng kí đề tài
+        Register a Topic
       </Button>
-      {currentUser?.major ? (
-        <Box p={4} component={"form"} onSubmit={handleCreateTopic}>
-          <Grid container spacing={1}>
-            <Grid item xs={2}>
-              <Typography variant="subtitle2">Tên đề tài:</Typography>
+      {loggedInUser?.major ? (
+        <Box mt={4}>
+          <Box
+            p={4}
+            component={"form"}
+            sx={{
+              background: "rgba(255, 255, 255, 0.8)",
+            }}
+          >
+            <Grid container spacing={1}>
+              <Grid item xs={2}>
+                <Typography variant="subtitle2">Topic Title:</Typography>
+              </Grid>
+              <Grid item xs={10}>
+                <TextField
+                  fullWidth
+                  size="small"
+                  value={topicTitle}
+                  onChange={(e) => setTopicTitle(e.target.value)}
+                />
+              </Grid>
             </Grid>
-            <Grid item xs={10}>
-              <TextField
-                fullWidth
-                size="small"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-              />
+            <Grid container spacing={1} mt={1}>
+              <Grid item xs={2}>
+                <Typography variant="subtitle2">Topic Description:</Typography>
+              </Grid>
+              <Grid item xs={10}>
+                <TextField
+                  multiline
+                  rows={3}
+                  fullWidth
+                  value={topicDescription}
+                  onChange={(e) => setTopicDescription(e.target.value)}
+                />
+              </Grid>
             </Grid>
-          </Grid>
-          <Grid container spacing={1} mt={1}>
-            <Grid item xs={2}>
-              <Typography variant="subtitle2">Mô tả đề tài:</Typography>
-            </Grid>
-            <Grid item xs={10}>
-              <TextField
-                multiline
-                rows={3}
-                fullWidth
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-              />
-            </Grid>
-          </Grid>
-
+          </Box>
           <Box display={"flex"} justifyContent={"center"} gap={2} mt={2}>
-            <Button variant="outlined" color="error" onClick={handleClear}>
-              Clear
-            </Button>
-            <Button variant="contained" type="submit">
-              Đăng kí
+            <Button variant="contained" type="submit" onClick={handleSubmitTopic}>
+              Register
             </Button>
           </Box>
         </Box>
@@ -99,10 +96,10 @@ function TeacherSubTopic() {
           sx={{ cursor: "pointer" }}
         >
           <Typography variant="subtitle2">
-            Bạn phải cập nhật thông tin chuyên ngành trước khi đăng kí đề tài
+            You need to update your major information before registering a topic
           </Typography>
           <Button variant="contained" size="small" href="/teacher-info">
-            Cập nhật
+            Update
           </Button>
         </Box>
       )}

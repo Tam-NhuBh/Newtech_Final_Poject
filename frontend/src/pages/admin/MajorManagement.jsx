@@ -151,9 +151,12 @@ function MajorManagement() {
             </Grid>
           </Box>
           
-          <Box sx={{ backgroundColor: 'rgba(255, 255, 255, 0.8)' }}> {/* Đổi màu nền tại đây */}
+          <Box   mt={4} sx={{
+            background: "rgba(255, 255, 255, 0.8)",
+            padding: "1rem",
+          }}> {/* Đổi màu nền tại đây */}
 
-              <Box height={"70vh"} width={"100%"} mt={4} >
+              <Box height={"40vh"} width={"100%"} mt={4} >
                 <DataGrid rows={listMajor} columns={columns} hideFooter={true} />
               </Box>
               <ModalUpdate
@@ -171,7 +174,6 @@ function MajorManagement() {
                   onChange={(e) =>
                     setMajorUpdate({ ...majorUpdate, name: e.target.value })
                   }
-                  sx={{ backgroundColor: 'rgba(255, 255, 255, 0.8)' }} // Đổi màu nền tại đây
          
                 />
                 <Typography variant="subtitle2" my={2}>

@@ -50,8 +50,7 @@ function AdminHome() {
     
     {
       field: "",
-      headerName: "Hành động",
-      width: 250,
+      width: 200,
       renderCell: (params) => {
         return (
           <Box display={"flex"} gap={2} alignItems={"center"}>
@@ -136,7 +135,7 @@ function AdminHome() {
       <Button fullWidth size="large" variant="contained">
         Quản lý đề tài
       </Button>
-      <Box height={"70vh"} width={"100%"} mt={4} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.8)'}}>
+      <Box height={"40vh"} width={"100%"} mt={4} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.8)'}}>
         <DataGrid rows={listTopic} columns={columns} hideFooter={true} />
       </Box>
       <ConfirmDelete

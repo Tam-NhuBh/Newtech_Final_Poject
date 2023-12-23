@@ -63,7 +63,10 @@ function GuestPreference() {
       <Button fullWidth size="large" variant="contained">
         Tài liệu tham khảo
       </Button>
-      <Box height={300} width={"100%"} mt={4} bgcolor="rgba(255, 255, 255, 0.8)">
+      <Box height={300} width={"96%"} mt={4}  sx={{
+        background: "rgba(255, 255, 255, 0.8)",
+        padding: "1rem",
+      }}>
         <DataGrid rows={listTopic} columns={columns} />
       </Box>
     </MainLayout>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Box, Button, Chip, Grid, TextField, Typography } from "@mui/material";
+import { Box, Button, Grid, TextField, Typography } from "@mui/material";
 import MainLayout from "../../components/layout/MainLayout";
 import { DataGrid } from "@mui/x-data-grid";
 import { deleteTopic, findTopic, list, update } from "../../utils/api/topic";
@@ -8,15 +8,29 @@ import ModalUpdate from "../../components/common/ModalUpdate";
 import { notify } from "../../utils/helpers/notify";
 import { findUser } from "../../utils/api/user";
 
+const StatusLabel = ({ status }) => {
+  const colorText = status === 0 ? "red" : "green";
+  const label = status === 0 ? "Chưa được phê duyệt" : "Đã được phê duyệt";
+  return <span style={{ color: colorText }}>{label}</span>;
+};
+
+const UserInfo = ({ label, value }) => {
+  return (
+    <Grid item xs={6}>
+      <Typography variant="subtitle2">
+        {label}: {value || "Không có"}
+      </Typography>
+    </Grid>
+  );
+};
+
 function TeacherHome() {
   const [listTopic, setListTopic] = useState([]);
   const [isOpenConfirmDelete, setIsOpenConfirmDelete] = useState(false);
   const [isOpenModalUpdate, setIsOpenModalUpdate] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
-
   const [idDelete, setIdDelete] = useState("");
   const [idUpdate, setIdUpdate] = useState("");
-
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [infoTopicUpdate, setInfoTopicUpdate] = useState({});
@@ -25,27 +39,28 @@ function TeacherHome() {
     {
       field: "id",
       headerName: "Mã đề tài",
-      width: 150,
+      width: 100,
     },
     { field: "title", headerName: "Tên đề tài", width: 150 },
     { field: "description", headerName: "Mô tả", width: 150 },
     {
       field: "approveByManagement",
       headerName: "Trạng thái",
-      width: 200,
+      width: 150,
       renderCell: (params) => {
         const label =
-          params.row.approveByManagement == 0
-            ? "Chưa được phê duyệt"
-            : "Đã được phê duyệt";
-        const color = params.row.approveByManagement == 0 ? "error" : "success";
-        return <Chip label={label} color={color} />;
+        params.row.approveByManagement === 0
+          ? "Chưa phê duyệt"
+          : "Đã phê duyệt";
+    
+      const colorText = params.row.approveByManagement == 0 ? "red":"green";
+    
+      return <span style={{ color: colorText }}>{label}</span>;
       },
     },
     {
       field: "",
-      headerName: "Hành động",
-      width: 250,
+      width: 200,
       renderCell: (params) => {
         return (
           <Box display={"flex"} gap={2} alignItems={"center"}>
@@ -76,6 +91,7 @@ function TeacherHome() {
     },
   ];
 
+
   const handleDelete = async () => {
     try {
       await deleteTopic(idDelete);
@@ -83,7 +99,7 @@ function TeacherHome() {
       setIsOpenConfirmDelete(false);
       setListTopic(listTopic?.filter((e) => e._id !== idDelete));
     } catch (error) {
-      throw error;
+      console.error(error);
     }
   };
 
@@ -146,7 +162,14 @@ function TeacherHome() {
       <Button fullWidth size="large" variant="contained">
         Quản lý đề tài
       </Button>
-      <Box height={"70vh"} width={"100%"} mt={4}>
+      <Box
+        height={"40vh"}
+        width={"96%"}
+        mt={4}
+        sx={{
+          background: "rgba(255, 255, 255, 0.8)", // Màu nền trắng có độ trong suốt
+          padding: "1rem", // Thêm padding cho khung
+        }}>     
         <DataGrid rows={listTopic} columns={columns} hideFooter={true} />
       </Box>
       <ConfirmDelete
@@ -156,12 +179,24 @@ function TeacherHome() {
         handleOk={handleDelete}
         handleClose={() => setIsOpenConfirmDelete(false)}
       />
+
       <ModalUpdate
         open={isOpenModalUpdate}
         handleClose={() => setIsOpenModalUpdate(false)}
         handleOk={handleUpdate}
-        title={"Hộp thoại chi tiết"}
+        title={
+          <Typography variant="h6" sx={{ textAlign: 'center' }}>
+            Hộp thoại chi tiết
+          </Typography>
+        }
+        
+
       >
+        <Box p={2}>
+          <Typography variant="subtitle2" color={"error"}>
+            *Lưu ý: chỉ cập nhật được đề tài do mình tạo
+          </Typography>
+        </Box>
         <Grid container spacing={2} py={2}>
           {infoTopicUpdate?.owner === currentUser?._id ? (
             <>
@@ -188,19 +223,16 @@ function TeacherHome() {
             </>
           ) : (
             <>
-              <Grid item xs={6}>
+              <Grid item xs={12}>
                 <Typography variant="subtitle2">
                   Tên đề tài: {infoTopicUpdate?.title}
                 </Typography>
-              </Grid>
-              <Grid item xs={6}>
                 <Typography variant="subtitle2">
-                  Sinh viên thực hiện: {infoTopicUpdate?.description}
+                  Mô tả đề tài: {infoTopicUpdate?.description}
                 </Typography>
               </Grid>
             </>
           )}
-
           <Grid item xs={6}>
             <Typography variant="subtitle2">
               Chuyên ngành: {infoTopicUpdate?.major?.name}
@@ -214,7 +246,7 @@ function TeacherHome() {
                 : "Không có"}
             </Typography>
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={12}>
             <Typography variant="subtitle2">
               Trạng thái:{" "}
               {infoTopicUpdate?.approveByManagement === 1
@@ -222,13 +254,9 @@ function TeacherHome() {
                 : "Chưa được phê duyệt"}
             </Typography>
           </Grid>
-          <Grid item xs={12}>
-            <Typography variant="subtitle2" color={"error"}>
-              *Lưu ý: chỉ cập nhật được đề tài do mình tạo
-            </Typography>
-          </Grid>
         </Grid>
       </ModalUpdate>
+
     </MainLayout>
   );
 }

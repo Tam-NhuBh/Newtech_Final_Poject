@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Box,
   Button,
@@ -7,7 +8,6 @@ import {
   DialogTitle,
   Typography,
 } from "@mui/material";
-import React from "react";
 
 const ModalUpdate = ({
   open,
@@ -22,13 +22,17 @@ const ModalUpdate = ({
     <Dialog
       open={open}
       onClose={handleClose}
-      aria-labelledby="alert-dialog-title"
-      aria-describedby="alert-dialog-description"
       fullWidth
+      PaperProps={{
+        sx: {
+          backgroundColor: '#d9e9f9',
+          opacity: 0.9,
+        },
+      }}
     >
-      <Box component={"form"} onSubmit={handleOk}>
-        <DialogTitle id="alert-dialog-title">
-          <Typography fontWeight={"bold"} variant="h6">
+      <Box component="form" onSubmit={handleOk}>
+        <DialogTitle sx={{ textAlign: 'center' }} id="alert-dialog-title">
+          <Typography fontWeight="bold" variant="h6">
             {title || "Hộp thoại cập nhật"}
           </Typography>
         </DialogTitle>
@@ -36,19 +40,25 @@ const ModalUpdate = ({
           <Box>{children}</Box>
         </DialogContent>
         <DialogActions>
-          {showCancel && (
-            <Button
-              onClick={handleClose}
-              variant="outlined"
-              color="error"
-              size="small"
-            >
-              Không đồng ý
+          <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+            {showCancel && (
+              <Button
+                onClick={handleClose}
+                variant="outlined"
+                sx={{
+                  bgcolor: 'red',
+                  color: 'white',
+                  marginRight: 2,
+                }}
+                size="small"
+              >
+                Không đồng ý
+              </Button>
+            )}
+            <Button autoFocus onClick={handleOk} size="small" variant="contained">
+              {titleOk || "Đồng ý"}
             </Button>
-          )}
-          <Button autoFocus onClick={handleOk} size="small" variant="contained">
-            {titleOk || "Đồng ý"}
-          </Button>
+          </Box>
         </DialogActions>
       </Box>
     </Dialog>

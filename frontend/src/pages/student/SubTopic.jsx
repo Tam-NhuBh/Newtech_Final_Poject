@@ -36,7 +36,7 @@ function SubTopic() {
     },
     {
       field: "",
-      width: 250,
+      width: 100,
       renderCell: (params) => {
         return (
           <Box display={"flex"} gap={2} alignItems={"center"}>
@@ -173,7 +173,10 @@ function SubTopic() {
           </>
         ) : (
           <>
-            <Box height={300} width={"100%"} mt={4}  sx={{ backgroundColor: "rgba(255, 255, 255, 0.8)"}}>
+            <Box height={300} width={"96%"} mt={4}  sx={{
+              background: "rgba(255, 255, 255, 0.8)",
+              padding: "1rem",
+            }}>
               <DataGrid rows={listTopic} columns={columns} hideFooter={true} />
             </Box>
           </>

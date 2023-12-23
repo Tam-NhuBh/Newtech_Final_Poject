@@ -12,7 +12,7 @@ import AssignTeacherReview from "../pages/management/AssignTeacherReview";
 import StudentCodeTopic from "../pages/student/StudentCodeTopic";
 import AssignedReview from "../pages/teacher/AssignedReview";
 import TeacherSubTopic from "../pages/teacher/TeacherSubTopic";
-import GuestMessage from "../pages/guest/GuestMessage";
+import GuestHome from "../pages/guest/GuestMessage";
 import GuestInstruction from "../pages/guest/GuestInstruction";
 import GuestPreference from "../pages/guest/GuestPreference";
 import GuestContact from "../pages/guest/GuestContact";
@@ -72,7 +72,7 @@ export const listRouter = {
     { path: "/sub-topic", element: <SubTopic /> },
   ],
   guest: [
-    { path: "/", element: <GuestMessage /> },
+    { path: "/", element: <GuestHome /> },
     { path: "/login", element: <Login /> },
     { path: "/guestInstruction", element: <GuestInstruction /> },
     { path: "/guestPreference", element: <GuestPreference /> },

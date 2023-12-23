@@ -53,7 +53,10 @@ function GuestContact() {
       <Button fullWidth size="large" variant="contained">
         Thông tin liên hệ
       </Button>
-      <Box height={300} width={"100%"} mt={4} bgcolor="rgba(255, 255, 255, 0.8)">
+      <Box height={300} width={"96%"} mt={4}   sx={{
+        background: "rgba(255, 255, 255, 0.8)",
+        padding: "1rem",
+      }}>
         <DataGrid rows={listTeacher} columns={columns} />
       </Box>
     </MainLayout>
