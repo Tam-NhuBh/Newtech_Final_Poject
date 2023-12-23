@@ -1,45 +1,41 @@
-// App.js
-import React, { lazy, useState } from 'react'
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
-import AccessibleNavigationAnnouncer from './components/AccessibleNavigationAnnouncer'
-
-const Layout = lazy(() => import('./containers/Layout'))
-const DefaultLayout = lazy(() => import('./containers/DefaultLayout'))
-const Login = lazy(() => import('./pages/Login'))
-const CreateAccount = lazy(() => import('./pages/CreateAccount'))
-const ForgotPassword = lazy(() => import('./pages/ForgotPassword'))
-const Reference = lazy(() => import('./pages/Reference'))
-const Details = lazy(() => import('./components/Reference/ReferenceDetail'))
-const Newsfeed = lazy(() => import('./pages/Newfeeds/Newfeeds'))
-const Detailfeed= lazy(() => import('./pages/Detailfeed/detailfeed'))
-
+import { Route, Routes } from "react-router-dom";
+import "./App.css";
+import { listRouter } from "./contstant";
+import { useEffect, useState } from "react";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // Mặc định là false
-
+  const [routers, setRouters] = useState([]);
+  useEffect(() => {
+    const getRouter = () => {
+      const obj = localStorage.getItem("user");
+      const type = JSON?.parse(obj)?.role;
+      switch (type) {
+        case 3:
+          setRouters(listRouter.admin);
+          break;
+        case 2:
+          setRouters(listRouter.management);
+          break;
+        case 1:
+          setRouters(listRouter.teacher);
+          break;
+        case 0:
+          setRouters(listRouter.student);
+          break;
+        default:
+          setRouters(listRouter.guest);
+          break;
+      }
+    };
+    getRouter();
+  }, []);
   return (
-    <>
-      <Router>
-        <AccessibleNavigationAnnouncer />
-        <Switch>
-          <Route path="/login" component={Login} />
-          <Route path="/create-account" component={CreateAccount} />
-          <Route path="/forgot-password" component={ForgotPassword} />
-          <Route path="/reference" component={Reference} />
-          <Route path= "/details" component={Details} />
-          <Route path="/app" component={Layout} />
-          <Route path="/newsfeed" component={Newsfeed} />
-          <Route path="/detailfeed/:id" component={Detailfeed} />
-
-
-          {/* Route mặc định */}
-          <Route exact path="/">
-            {isLoggedIn ? <Redirect to="/app" /> : <DefaultLayout />}
-          </Route>
-        </Switch>
-      </Router>
-    </>
-  )
+    <Routes>
+      {routers?.map((router, index) => (
+        <Route path={router.path} element={router?.element} key={index} />
+      ))}
+    </Routes>
+  );
 }
 
-export default App
+export default App;
