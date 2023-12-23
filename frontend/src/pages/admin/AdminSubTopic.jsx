@@ -6,36 +6,36 @@ import { create } from "../../utils/api/topic";
 import { notify } from "../../utils/helpers/notify";
 import SelectMajor from "../../components/common/SelectMajor";
 
-function AdminSubTopic() {
+const AdminSubTopic = () => {
   const [currentUser, setCurrentUser] = useState({});
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [major, setMajor] = useState("");
+  const [topicTitle, setTopicTitle] = useState("");
+  const [topicDescription, setTopicDescription] = useState("");
+  const [topicMajor, setTopicMajor] = useState("");
 
-  const handleClear = () => {
-    setTitle("");
-    setDescription("");
+  const clearFields = () => {
+    setTopicTitle("");
+    setTopicDescription("");
   };
 
-  const handleCreateTopic = async (e) => {
+  const handleSubmit = async (e) => {
     try {
       e.preventDefault();
       await create({
-        title,
-        description,
+        title: topicTitle,
+        description: topicDescription,
         approveByManagement: 1,
-        major,
+        major: topicMajor,
         owner: currentUser?._id,
       });
-      notify("success", "Thêm đề tài thành công");
-      handleClear();
+      notify("success", "Added topic successfully");
+      clearFields();
     } catch (error) {
       console.log(error);
     }
   };
 
   useEffect(() => {
-    const getCurrentUser = async () => {
+    const fetchCurrentUser = async () => {
       try {
         const id = JSON.parse(localStorage.getItem("user"))._id;
         const res = await findUser(id);
@@ -44,60 +44,76 @@ function AdminSubTopic() {
         console.log(error);
       }
     };
-    getCurrentUser();
+    fetchCurrentUser();
   }, []);
 
   return (
     <MainLayout>
       <Button fullWidth size="large" variant="contained">
-        Đăng kí đề tài
+        Register topic
       </Button>
-
-      <Box p={4} component={"form"} onSubmit={handleCreateTopic}>
-        <Grid container spacing={1}>
-          <Grid item xs={2}>
-            <Typography variant="subtitle2">Chuyên ngành:</Typography>
-          </Grid>
-          <Grid item xs={10}>
-            <SelectMajor value={major} setValue={setMajor} />
-          </Grid>
-        </Grid>
-        <Grid container spacing={1} mt={1}>
-          <Grid item xs={2}>
-            <Typography variant="subtitle2">Tên đề tài:</Typography>
-          </Grid>
-          <Grid item xs={10}>
-            <TextField
-              fullWidth
-              size="small"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-            />
-          </Grid>
-        </Grid>
-        <Grid container spacing={1} mt={1}>
-          <Grid item xs={2}>
-            <Typography variant="subtitle2">Mô tả đề tài:</Typography>
-          </Grid>
-          <Grid item xs={10}>
-            <TextField
-              multiline
-              rows={3}
-              fullWidth
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-            />
-          </Grid>
-        </Grid>
-
-        <Box display={"flex"} justifyContent={"center"} gap={2} mt={2}>
-          <Button variant="contained" type="submit">
-            Đăng kí
+      <Box mt={4}>
+        <Box sx={{ backgroundColor: 'rgba(255, 255, 255, 0.8)' }} p={4} component={"form"} onSubmit={handleSubmit}>
+          <FormSection
+            topicTitle={topicTitle}
+            setTopicTitle={setTopicTitle}
+            topicDescription={topicDescription}
+            setTopicDescription={setTopicDescription}
+            topicMajor={topicMajor}
+            setTopicMajor={setTopicMajor}
+          />
+        </Box>
+        <Box mt={2} display="flex" justifyContent="center">
+          <Button variant="contained" type="submit" onClick={handleSubmit}>
+            Register
           </Button>
         </Box>
       </Box>
     </MainLayout>
   );
-}
+};
+
+const FormSection = ({
+  topicTitle,
+  setTopicTitle,
+  topicDescription,
+  setTopicDescription,
+  topicMajor,
+  setTopicMajor,
+}) => {
+  return (
+    <Grid container spacing={1}>
+      <Grid item xs={2}>
+        <Typography variant="subtitle2">Chuyên ngành:</Typography>
+      </Grid>
+      <Grid item xs={10}>
+        <SelectMajor value={topicMajor} setValue={setTopicMajor} />
+      </Grid>
+      <Grid item xs={2}>
+        <Typography variant="subtitle2">Tên đề tài:</Typography>
+      </Grid>
+      <Grid item xs={10}>
+        <TextField
+          fullWidth
+          size="small"
+          value={topicTitle}
+          onChange={(e) => setTopicTitle(e.target.value)}
+        />
+      </Grid>
+      <Grid item xs={2}>
+        <Typography variant="subtitle2">Mô tả đề tài:</Typography>
+      </Grid>
+      <Grid item xs={10}>
+        <TextField
+          multiline
+          rows={3}
+          fullWidth
+          value={topicDescription}
+          onChange={(e) => setTopicDescription(e.target.value)}
+        />
+      </Grid>
+    </Grid>
+  );
+};
 
 export default AdminSubTopic;

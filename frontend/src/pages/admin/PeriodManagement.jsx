@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import MainLayout from "../../components/layout/MainLayout";
-import { Box, Button, Grid, TextField } from "@mui/material";
+import { Box, Button, Grid, TextField, Typography } from "@mui/material";
 import SelectMajor from "../../components/common/SelectMajor";
 import { create, deletePeriod, list } from "../../utils/api/period";
 import { DataGrid } from "@mui/x-data-grid";
@@ -8,9 +8,12 @@ import { notify } from "../../utils/helpers/notify";
 import ConfirmDelete from "../../components/common/ConfirmDelete";
 
 function PeriodManagement() {
-  const [timeOpen, setTimeOpen] = useState("");
-  const [timeClose, setTimeClose] = useState("");
-  const [major, setMajor] = useState("");
+  const [formData, setFormData] = useState({
+    timeOpen: "",
+    timeClose: "",
+    major: "",
+  });
+
   const [listPeriod, setListPeriod] = useState([]);
   const [isOpenConfirmDelete, setIsOpenConfirmDelete] = useState(false);
   const [idDelete, setIdDelete] = useState("");
@@ -18,34 +21,29 @@ function PeriodManagement() {
   const columns = [
     {
       field: "major",
-      headerName: "Tên chuyên ngành",
+      headerName: "Name of major",
       width: 200,
-      valueGetter: (params) => {
-        return params.value?.name;
-      },
+      valueGetter: (params) => params.value?.name,
     },
-    { field: "timeOpen", headerName: "Thời gian mở", width: 200 },
-    { field: "timeClose", headerName: "Thời gian đóng", width: 200 },
+    { field: "timeOpen", headerName: "Open time", width: 200 },
+    { field: "timeClose", headerName: "Close time", width: 200 },
     {
       field: "",
-      headerName: "Hành động",
       width: 200,
-      renderCell: (params) => {
-        return (
-          <Box display={"flex"} gap={2} alignItems={"center"}>
-            <Button
-              color="error"
-              variant="outlined"
-              onClick={() => {
-                setIsOpenConfirmDelete(true);
-                setIdDelete(params.row._id);
-              }}
-            >
-              Xóa
-            </Button>
-          </Box>
-        );
-      },
+      renderCell: (params) => (
+        <Box display="flex" gap={2} alignItems="center">
+          <Button
+            color="error"
+            variant="outlined"
+            onClick={() => {
+              setIsOpenConfirmDelete(true);
+              setIdDelete(params.row._id);
+            }}
+          >
+            Xóa
+          </Button>
+        </Box>
+      ),
     },
   ];
 
@@ -61,7 +59,7 @@ function PeriodManagement() {
   const handleDelete = async () => {
     try {
       await deletePeriod(idDelete);
-      notify("success", "Xóa thành công");
+      notify("success", "Deleted successfully");
       setIsOpenConfirmDelete(false);
       getListPeriod();
     } catch (error) {
@@ -72,9 +70,9 @@ function PeriodManagement() {
   const handleCreatePeriod = async (e) => {
     e.preventDefault();
     try {
-      await create({ timeClose, timeOpen, major });
+      await create(formData);
       getListPeriod();
-      notify("success", "Tạo thành công");
+      notify("success", "Created successfully");
     } catch (error) {
       notify("error", error?.response?.data?.message);
     }
@@ -82,9 +80,7 @@ function PeriodManagement() {
   };
 
   const handleClear = () => {
-    setTimeOpen("");
-    setTimeClose("");
-    setMajor("");
+    setFormData({ timeOpen: "", timeClose: "", major: "" });
   };
 
   useEffect(() => {
@@ -94,51 +90,90 @@ function PeriodManagement() {
   return (
     <MainLayout>
       <Button fullWidth size="large" variant="contained">
-        Quản lý thời gian đăng kí đề tài
+        Manage topic registration time
       </Button>
-      <Box mt={4} component={"form"} onSubmit={handleCreatePeriod}>
-        <Grid container spacing={2}>
-          <Grid item xs={6}>
-            <TextField
-              fullWidth
-              size="small"
-              label="Thời gian mở"
-              placeholder="DD/MM/YYY"
-              required
-              value={timeOpen}
-              onChange={(e) => setTimeOpen(e.target.value)}
-            />
-          </Grid>
 
-          <Grid item xs={6}>
-            <TextField
-              fullWidth
-              size="small"
-              label="Thời gian đóng"
-              placeholder="DD/MM/YYY"
-              required
-              value={timeClose}
-              onChange={(e) => setTimeClose(e.target.value)}
-            />
-          </Grid>
-          <Grid item xs={6}>
-            <SelectMajor value={major} setValue={setMajor} />
-          </Grid>
-          <Grid item xs={6}>
-            <Button variant="contained" type="submit">
-              Tạo
-            </Button>
-          </Grid>
-        </Grid>
-      </Box>
-      <Box height={"70vh"} width={"100%"} mt={4}>
+      <Box
+        height="30vh"
+        width="100%"
+        mt={4}
+        sx={{ backgroundColor: "rgba(255, 255, 255, 0.8)" }}
+      >
         <DataGrid rows={listPeriod} columns={columns} hideFooter={true} />
       </Box>
+
       <ConfirmDelete
         open={isOpenConfirmDelete}
         handleOk={handleDelete}
         handleClose={() => setIsOpenConfirmDelete(false)}
       />
+
+      <Box
+        mt={5}
+        component="form"
+        onSubmit={handleCreatePeriod}
+        sx={{
+          backgroundColor: "rgba(255, 255, 255, 0.8)",
+          padding: "20px",
+          boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
+        }}
+      >
+        <Box display="flex" alignItems="center">
+          <Typography
+            variant="h6"
+            sx={{
+              marginBottom: "20px",
+              fontWeight: "bold",
+              fontFamily: "Arial",
+            }}
+          >
+            Time period to complete the project
+          </Typography>
+        </Box>
+        <Grid container spacing={2} mt={1}>
+          <Grid item xs={4}>
+            <TextField
+              fullWidth
+              size="small"
+              label="Open time"
+              placeholder="DD/MM/YYYY"
+              required
+              value={formData.timeOpen}
+              onChange={(e) =>
+                setFormData({ ...formData, timeOpen: e.target.value })
+              }
+              sx={{ marginBottom: "20px" }}
+            />
+          </Grid>
+          <Grid item xs={4}>
+            <TextField
+              fullWidth
+              size="small"
+              label="Close time"
+              placeholder="DD/MM/YYYY"
+              required
+              value={formData.timeClose}
+              onChange={(e) =>
+                setFormData({ ...formData, timeClose: e.target.value })
+              }
+              sx={{ marginBottom: "20px" }}
+            />
+          </Grid>
+          <Grid item xs={4}>
+            <SelectMajor
+              value={formData.major}
+              setValue={(value) =>
+                setFormData({ ...formData, major: value })
+              }
+            />
+          </Grid>
+        </Grid>
+      </Box>
+      <Box mt={2} display="flex" justifyContent="center">
+        <Button variant="contained" type="submit" onClick={handleCreatePeriod}>
+          Create New
+        </Button>
+      </Box>
     </MainLayout>
   );
 }

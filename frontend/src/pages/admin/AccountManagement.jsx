@@ -24,9 +24,10 @@ function AccountManagement() {
   }, []);
   return (
     <MainLayout>
-      <CreateAccount setList={setListUser} />
       <InfoAccount data={listUser} setList={setListUser} />
-    </MainLayout>
+      <CreateAccount setList={setListUser} />
+
+      </MainLayout>
   );
 }
 
