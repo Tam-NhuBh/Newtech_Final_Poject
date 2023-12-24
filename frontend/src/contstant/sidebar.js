@@ -51,7 +51,7 @@ export const managementSideBar = [
     href: "/managementInfo",
   },
   {
-    name: "Submit Project",
+    name: "Register Project",
     icon: <AddCircleOutlineIcon />,
     href: "/managementSubTopic",
   },
@@ -110,12 +110,8 @@ export const studentSideBar = [
 ];
 
 export const guestSideBar = [
-  { name: "Home", icon: <HomeOutlinedIcon />, href: "/" },
-  {
-    name: "Instructions",
-    icon: <PictureAsPdfOutlinedIcon />,
-    href: "/guestInstruction",
-  },
+  { name: "Home", icon: <PictureAsPdfOutlinedIcon />, href: "/" },
+
   {
     name: "Reference",
     icon: <MenuBookOutlinedIcon />,

@@ -10,11 +10,6 @@ function ManagementSubTopic() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
-  const handleClear = () => {
-    setTitle("");
-    setDescription("");
-  };
-
   const handleCreateTopic = async (e) => {
     try {
       e.preventDefault();
@@ -26,7 +21,6 @@ function ManagementSubTopic() {
         owner: currentUser?._id,
       });
       notify("success", "Add topic successfully");
-      handleClear();
     } catch (error) {
       console.log(error);
     }
@@ -51,7 +45,10 @@ function ManagementSubTopic() {
         Register Topic
       </Button>
       {currentUser?.major ? (
-        <Box p={4} component={"form"} onSubmit={handleCreateTopic}>
+        <Box p={4} component={"form"} onSubmit={handleCreateTopic}   mt={4} sx={{
+          background: "rgba(255, 255, 255, 0.8)",
+          padding: "1rem",
+        }}>
           <Grid container spacing={1}>
             <Grid item xs={2}>
               <Typography variant="subtitle2">Topic Name:</Typography>
@@ -80,14 +77,6 @@ function ManagementSubTopic() {
             </Grid>
           </Grid>
 
-          <Box display={"flex"} justifyContent={"center"} gap={2} mt={2}>
-            <Button variant="outlined" color="error" onClick={handleClear}>
-              Clear
-            </Button>
-            <Button variant="contained" type="submit">
-              Register
-            </Button>
-          </Box>
         </Box>
       ) : (
         <Box
@@ -101,11 +90,17 @@ function ManagementSubTopic() {
           <Typography variant="subtitle2">
             You must update your major information before registering for a topic
           </Typography>
-          <Button variant="contained" size="small" href="/management-info">
+          <Button variant="contained" size="small" onDoubleClick={handleCreateTopic}>
             Update
           </Button>
         </Box>
       )}
+      
+      <Box display={"flex"} justifyContent={"center"} gap={2} mt={2}>
+      <Button variant="contained" type="submit" onClick={handleCreateTopic}>
+        Register
+      </Button>
+    </Box>
     </MainLayout>
   );
 }

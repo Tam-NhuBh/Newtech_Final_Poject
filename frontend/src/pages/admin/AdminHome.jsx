@@ -135,7 +135,10 @@ function AdminHome() {
       <Button fullWidth size="large" variant="contained">
         Manage Topic
       </Button>
-      <Box height={"40vh"} width={"100%"} mt={4} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.8)'}}>
+      <Box height={"40vh"} width={"96%"} mt={4}    sx={{
+        background: "rgba(255, 255, 255, 0.8)",
+        padding: "1rem",
+      }}>
         <DataGrid rows={listTopic} columns={columns} hideFooter={true} />
       </Box>
       <ConfirmDelete

@@ -50,7 +50,6 @@ function AssignTeacherReview() {
     },
     {
       field: "",
-      headerName: "Action",
       width: 150,
       renderCell: (params) => {
         return (
@@ -134,7 +133,10 @@ function AssignTeacherReview() {
       <Button fullWidth size="large" variant="contained">
         Assign Lecturer Review
       </Button>
-      <Box height={300} width={"100%"} mt={4}>
+      <Box height={300} width={"96%"} mt={4}    sx={{
+        background: "rgba(255, 255, 255, 0.8)",
+        padding: "1rem",
+      }}>
         <DataGrid rows={listTopic} columns={columns} />
       </Box>
       <ModalUpdate

@@ -40,17 +40,17 @@ function ManagementHome() {
       headerName: "Status",
       width: 200,
       renderCell: (params) => {
-        const label =
-          params.row.approveByManagement == 0
-            ? "Not Approved"
-            : "Approved";
-        const color = params.row.approveByManagement == 0 ? "error" : "success";
-        return <Chip label={label} color={color} />;
+        const label = params.row.approveByManagement === 0 ? 'Not Approved' : 'Approved';
+        const colorText = params.row.approveByManagement === 0 ? 'red' : 'green';
+
+        return (
+          <span style={{ color: colorText }}>
+            {label}
+          </span> );
       },
     },
     {
       field: "",
-      headerName: "Action",
       width: 250,
       renderCell: (params) => {
         return (
@@ -152,7 +152,10 @@ function ManagementHome() {
       <Button fullWidth size="large" variant="contained">
         Manage Topic
       </Button>
-      <Box height={"70vh"} width={"100%"} mt={4}>
+      <Box height={"40vh"} width={"96%"} mt={4} sx={{
+        background: "rgba(255, 255, 255, 0.8)",
+        padding: "1rem",
+      }}>
         <DataGrid rows={listTopic} columns={columns} hideFooter={true} />
       </Box>
       <ConfirmDelete

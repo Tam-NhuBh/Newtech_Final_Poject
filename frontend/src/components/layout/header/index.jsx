@@ -54,11 +54,9 @@ function Header() {
     >
       <Box display={"flex"}>
         <img src={logo}alt="Logo" style={{ marginRight: '2px', width: '80px', height: '50px' }} />
-        <Text>INTRODUCTION</Text>
-        <Text>NEWS FEED</Text>
-        <Text>INSTRUCTION</Text>
+        <Text sx={{ fontSize: '17px' }}>WELCOME TO BE A MEMBER OF HCM CITY UNIVERSITY OF TECHNOLOGY AND EDUCATION</Text>
       </Box>
-      {!user?.username ? (
+      {!user?.email ? (
         <Button size="small" href="/login" >
           <Box display={"flex"} alignItems={"center"} gap={1}>
             <PersonIcon sx={{ color: "black" }} />
@@ -71,7 +69,7 @@ function Header() {
         <Box display={"flex"} alignItems={"center"}>
 
            <AccountCircleIcon /> 
-          <Text>{user?.username}</Text>
+          <Text>{user?.email}</Text>
           <Button onClick={handleLogout}>
             <Typography fontSize={12} color={"black"} fontWeight={"bold"}>
               LOG OUT

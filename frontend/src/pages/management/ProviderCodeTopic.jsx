@@ -8,17 +8,17 @@ import SearchTopic from "../../components/common/SearchTopic";
 const rows = [
   {
     id: 1,
-    teacher: "Ronaldo",
+    teacher: "test 1",
     code: "123",
     title: "Topic 1",
-    date: "13/11/2023",
+    date: "09/10/2023",
   },
   {
     id: 2,
-    teacher: "Messi",
-    code: "1234",
+    teacher: "Test 2",
+    code: "122",
     title: "Topic 2",
-    date: "13/11/2023",
+    date: "11/10/2023",
   },
 ];
 
@@ -41,7 +41,6 @@ function ManagementApproveSubTopic() {
     { field: "date", headerName: "Registration Date", width: 150 },
     {
       field: "",
-      headerName: "Action",
       width: 150,
       renderCell: (params) => {
         return (
