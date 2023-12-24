@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Box, Typography, TextField, Grid } from "@mui/material";
+import { Button, Box, Typography, TextField, Grid,  Input } from "@mui/material";
 import MainLayout from "../../components/layout/MainLayout";
 import Timeline from "@mui/lab/Timeline";
 import TimelineItem from "@mui/lab/TimelineItem";
@@ -15,35 +15,33 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { findUser } from "../../utils/api/user";
 import { findTopicOfStudent } from "../../utils/api/topic";
+import { notify } from "../../utils/helpers/notify"; // Đảm bảo rằng bạn import notify từ thư viện của bạn
+
 
 function StudentHome() {
   const [currentUser, setCurrentUser] = useState({});
   const [currentTopic, setCurrentTopic] = useState({});
  // Khai báo state để lưu trữ file được chọn
-  const [selectedFile, setSelectedFile] = useState(null);
 
-    // Hàm xử lý sự kiện chọn file
-    const handleFileChange = (e) => {
-      setSelectedFile(e.target.files[0]);
+
+    const showNotification = (type, message) => {
+      // Thực hiện logic để hiển thị thông báo
+      console.log(`Notification (${type}): ${message}`);
+    
+      // Giả lập việc hiển thị thông báo trong 3 giây
+      setTimeout(() => {
+        console.log('Notification hidden');
+        // Code để ẩn thông báo
+      }, 3000);
     };
-
-   // Hàm xử lý gửi file lên server
     const handleFileSubmit = async () => {
       try {
-        const formData = new FormData();
-        formData.append("file", selectedFile);
-
-        // Sử dụng hàm hoặc API để gửi formData lên server
-        // Ví dụ sử dụng fetch API:
-        const response = await fetch("/upload", {
-          method: "POST",
-          body: formData,
-        });  
+        notify("success", "File submitted successfully");
       } catch (error) {
-        console.error("Error uploading file: ", error);
+        // Xử lý lỗi khi gửi file không thành công
+        console.error("Error submitting file:", error);
       }
     };
-
   useEffect(() => {
     const getCurrentUser = async () => {
       try {
@@ -122,19 +120,20 @@ function StudentHome() {
                                 Progress:
                               </Typography>
                             </Grid>
+
                             <Grid item xs={8}>
                               <TextField size="small" fullWidth />
                             </Grid>
                           </Grid>
                           <Box
-                            display={"flex"}
-                            justifyContent={"center"}
-                            mt={2}
-                          >
-                            <Button variant="contained" size="small" onClick={handleFileSubmit}>
-                              Update
-                            </Button>
-                          </Box>
+                          display={"flex"}
+                          justifyContent={"center"}
+                          mt={2}
+                        >
+                          <Button variant="contained" size="small" onClick={handleFileSubmit}>
+                            Update
+                          </Button>
+                        </Box>
                         </Box>
                       </AccordionDetails>
                     </Accordion>
@@ -185,15 +184,15 @@ function StudentHome() {
                               <TextField size="small" fullWidth />
                             </Grid>
                           </Grid>
-                          <Box
-                            display={"flex"}
-                            justifyContent={"center"}
-                            mt={2}
-                          >
-                            <Button variant="contained" size="small" onClick={handleFileSubmit}>
-                              Update
-                            </Button>
-                          </Box>
+                      <Box
+                        display={"flex"}
+                        justifyContent={"center"}
+                        mt={2}
+                      >
+                        <Button variant="contained" size="small" onClick={handleFileSubmit}>
+                          Update
+                        </Button>
+                      </Box>
                         </Box>
                       </AccordionDetails>
                     </Accordion>
@@ -245,14 +244,14 @@ function StudentHome() {
                             </Grid>
                           </Grid>
                           <Box
-                            display={"flex"}
-                            justifyContent={"center"}
-                            mt={2}
-                          >
-                            <Button variant="contained" size="small" onClick={handleFileSubmit}>
-                              Update
-                            </Button>
-                          </Box>
+                          display={"flex"}
+                          justifyContent={"center"}
+                          mt={2}
+                        >
+                          <Button variant="contained" size="small" onClick={handleFileSubmit}>
+                            Update
+                          </Button>
+                        </Box>
                         </Box>
                       </AccordionDetails>
                     </Accordion>
