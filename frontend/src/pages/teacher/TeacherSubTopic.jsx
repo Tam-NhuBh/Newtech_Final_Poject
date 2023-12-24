@@ -15,9 +15,9 @@ function TeacherSubTopic() {
       await create({
         title: topicTitle,
         description: topicDescription,
-        teacherId: loggedInUser?._id,
-        majorId: loggedInUser?.major?._id,
-        ownerId: loggedInUser?._id,
+        teacher: loggedInUser?._id,
+        major: loggedInUser?.major?._id,
+        owner: loggedInUser?._id,
       });
       notify("success", "Add topic successfully");
     } catch (error) {

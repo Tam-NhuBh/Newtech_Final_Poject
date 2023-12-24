@@ -9,9 +9,9 @@ const connectDB = async () => {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
-    let ad = await userModel.findOne({ username: "departmenthead1" });
+    let ad = await userModel.findOne({ username: "student1" });
     if (!ad) {
-      await userModel.create(configuration.departmenthead);
+      await userModel.create(configuration.student);
     }
     console.log("Connect to db successfully");
   } catch (error) {

@@ -18,4 +18,4 @@ const periodSchema = mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model("stages", periodSchema);
+module.exports = mongoose.model("period", periodSchema);

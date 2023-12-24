@@ -1,6 +1,6 @@
 module.exports = {
   DB_URL:
-    "mongodb+srv://20110431:123a@cluster0.idazglv.mongodb.net/",
+    "mongodb+srv://tnhubh:tnhubh123@newtech.yjigc67.mongodb.net/",
     admin: {
       name: "admin1",
       username: "admin1",
