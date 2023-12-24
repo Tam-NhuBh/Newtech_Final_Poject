@@ -99,7 +99,7 @@ function Login() {
                 onChange={handleInputChange}
                 required
               />
-              <Button fullWidth size="medium" variant="contained" type="submit">
+              <Button fullWidth size="medium" variant="contained" type="submit" onClick={handleLogin}>
                 Login
               </Button>
               <Button className="mt-6" block layout="outline" onClick={handleGoogleLoginClick}>

@@ -14,16 +14,16 @@ import SearchTopic from "../../components/common/SearchTopic";
 
 const rows = [
   {
-    id: "025981",
-    teacher: "Ronaldo",
+    id: "02231",
+    teacher: "test 2",
     title: "Topic 1",
-    date: "13/11/2023",
+    date: "18/10/2023",
   },
   {
-    id: "962682",
-    teacher: "Messi",
+    id: "1322",
+    teacher: "test3",
     title: "Topic 2",
-    date: "13/11/2023",
+    date: "22/09/2023",
   },
 ];
 

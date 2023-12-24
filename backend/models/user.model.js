@@ -40,7 +40,7 @@ const userSchema = mongoose.Schema(
       type: Number,
     },
 
-    // 0: student 1:teacher 2:dpmhead 3:admin
+    // 0: student 1:teacher 2:dphead 3:admin
     role: {
       type: Number,
       default: 0,

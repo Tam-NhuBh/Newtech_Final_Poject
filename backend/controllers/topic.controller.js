@@ -4,6 +4,7 @@ const ErrorResponse = require("../helpers/ErrorResponse");
 module.exports = {
   create: async (req, res) => {
     try {
+      console.log("TEst",req.body)
       const data = await topicModel.create(req.body);
       res.status(201).json(data);
     } catch (error) {
@@ -39,12 +40,13 @@ module.exports = {
       if (req?.query?.student === "notNull") {
         query.student = { $ne: null };
       }
-
+      console.log(query)
       const data = await topicModel
         .find(query)
         .populate("teacher")
         .populate("student")
         .populate("teacherReview");
+      console.log(data)
       res.status(201).json(data);
     } catch (error) {
       console.log(error);
