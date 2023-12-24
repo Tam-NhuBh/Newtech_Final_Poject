@@ -54,7 +54,7 @@ function MajorManagement() {
                 setMajorUpdate(listMajor?.find((i) => i.id == params.row.id));
               }}
             >
-              Cập nhật
+              Update
             </Button>
           </Box>
         );
@@ -68,7 +68,7 @@ function MajorManagement() {
       const res = await create({ name });
       setName("");
       setListMajor((prev) => [{ ...res?.data, id: res?.data?._id }, ...prev]);
-      notify("success", "Tạo chuyên ngành thành công");
+      notify("success", "Add major successfully");
     } catch (error) {
       console.log(error);
       notify("error", error?.response?.data?.message);
@@ -83,7 +83,7 @@ function MajorManagement() {
         ...rest,
       });
 
-      notify("success", "Cập nhật thành công");
+      notify("success", "Update successfully");
       const newData = listMajor?.map((i) => {
         if (i._id === _id) return { id: res?.data?._id, ...res?.data };
         else return i;
@@ -111,7 +111,7 @@ function MajorManagement() {
     <MainLayout>
         <Box>
           <Button fullWidth size="large" variant="contained">
-          Major management
+            Major Management
           </Button>
   
           <Box mt={2} >

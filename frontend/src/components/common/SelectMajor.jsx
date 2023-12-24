@@ -26,7 +26,7 @@ function SelectMajor({ value, setValue, disabled = false }) {
   return (
     <>
       <Select
-        label="Chuyên ngành"
+        label="Major"
         fullWidth
         size="small"
         value={value}

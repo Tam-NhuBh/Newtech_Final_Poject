@@ -26,15 +26,15 @@ function AssignTeacherReview() {
   const [dayReivew, setDayReview] = useState(null);
 
   const columns = [
-    { field: "title", headerName: "Tiêu đề", width: 150 },
+    { field: "title", headerName: "Title", width: 150 },
     {
       field: "description",
-      headerName: "Mô tả",
+      headerName: "Description",
       width: 150,
     },
     {
       field: "teacher",
-      headerName: "Giáo viên HD",
+      headerName: "Instructor",
       width: 150,
       valueGetter: (params) => {
         return params.value?.name;
@@ -42,7 +42,7 @@ function AssignTeacherReview() {
     },
     {
       field: "student",
-      headerName: "Sinh viên thực hiện",
+      headerName: "Student",
       width: 150,
       valueGetter: (params) => {
         return params.value?.name;
@@ -64,7 +64,7 @@ function AssignTeacherReview() {
                 setCurrentTopic(params?.row?._id);
               }}
             >
-              Phân công
+              Assign
             </Button>
           </Box>
         );
@@ -75,17 +75,17 @@ function AssignTeacherReview() {
   const handleAssginReivew = async () => {
     try {
       if (!dayReivew) {
-        notify("warn", "Bạn chưa nhập ngày phản biện");
+        notify("warn", "You have not entered a review date");
       } else if (!teacherReview) {
-        notify("warn", "Bạn chưa chọn giáo viên phản biện");
+        notify("warn", "You have not chosen a reviewer yet");
       } else if (teacherReview == currentteacher) {
         notify(
           "warn",
-          "Vui lòng chọn giáo viên phản biện khác giáo viên hướng dẫn"
+          "Please choose a different reviewer from the instructor"
         );
       } else {
         await update(currentTopic, { teacherReview, dayReivew });
-        notify("success", "Phân công giáo viên phản biện thành công");
+        notify("success", "Assign lecturer review successfully");
         await getListTopic();
         setIsOpenMdal(false);
       }
@@ -132,7 +132,7 @@ function AssignTeacherReview() {
   return (
     <MainLayout>
       <Button fullWidth size="large" variant="contained">
-        Phân công GV phản biện
+        Assign Lecturer Review
       </Button>
       <Box height={300} width={"100%"} mt={4}>
         <DataGrid rows={listTopic} columns={columns} />
@@ -140,12 +140,12 @@ function AssignTeacherReview() {
       <ModalUpdate
         open={isOpenModal}
         handleClose={() => setIsOpenMdal(false)}
-        title={"Phân công hội đồng phản biện"}
+        title={"Assign review board"}
         handleOk={handleAssginReivew}
       >
         <Grid container spacing={2}>
           <Grid item xs={4}>
-            <Typography variant="subtitle2">Giáo viên phản biện:</Typography>
+            <Typography variant="subtitle2">Lecturer Review:</Typography>
           </Grid>
           <Grid item xs={8}>
             {listTeacherReview && (
@@ -161,7 +161,7 @@ function AssignTeacherReview() {
         </Grid>
         <Grid container spacing={1} mt={2}>
           <Grid item xs={4}>
-            <Typography variant="subtitle2">Ngày phản biện:</Typography>
+            <Typography variant="subtitle2">Review Date:</Typography>
           </Grid>
           <Grid item xs={8}>
             <TextField

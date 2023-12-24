@@ -33,7 +33,7 @@ const ModalUpdate = ({
       <Box component="form" onSubmit={handleOk}>
         <DialogTitle sx={{ textAlign: 'center' }} id="alert-dialog-title">
           <Typography fontWeight="bold" variant="h6">
-            {title || "Hộp thoại cập nhật"}
+            {title || "Update Box"}
           </Typography>
         </DialogTitle>
         <DialogContent>
@@ -52,11 +52,11 @@ const ModalUpdate = ({
                 }}
                 size="small"
               >
-                Không đồng ý
+                Cancel
               </Button>
             )}
             <Button autoFocus onClick={handleOk} size="small" variant="contained">
-              {titleOk || "Đồng ý"}
+              {titleOk || "Accept"}
             </Button>
           </Box>
         </DialogActions>

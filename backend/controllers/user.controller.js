@@ -58,7 +58,7 @@ module.exports = {
         .select("-password");
 
       if (!user) {
-        throw new ErrorResponse(404, "Username hoặc mật khẩu không chính xác");
+        throw new ErrorResponse(404, "Username or password is incorrect");
       }
       return res.status(200).json(user);
     } catch (error) {
@@ -76,7 +76,7 @@ module.exports = {
       });
 
       if (user) {
-        throw new ErrorResponse(404, "Username hoặc email đã tồn tại");
+        throw new ErrorResponse(404, "Username or email already exists");
       }
 
       const existManagement = await userModel.findOne({
@@ -87,7 +87,7 @@ module.exports = {
       if (existManagement && req.body.role == 2) {
         throw new ErrorResponse(
           404,
-          `${existManagement?.name} hiện đang là trưởng môn của chuyên ngành này`
+          `${existManagement?.name} is currently the head of this major`
         );
       }
 
@@ -111,7 +111,7 @@ module.exports = {
       ) {
         throw new ErrorResponse(
           404,
-          `${existManagement?.name} hiện đang là trưởng môn của chuyên ngành này`
+          `${existManagement?.name} is currently the head of this major`
         );
       }
 
@@ -131,7 +131,7 @@ module.exports = {
   deleteUser: async (req, res) => {
     try {
       await userModel.findOneAndDelete({ _id: req.params.id });
-      res.status(201).json("Xóa user thành công");
+      res.status(201).json("Delete user successful");
     } catch (error) {
       throw error;
     }

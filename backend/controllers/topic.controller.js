@@ -59,16 +59,16 @@ module.exports = {
       if (topic.teacher.toString()) {
         if (topic.owner._id.toString() === topic.teacher.toString()) {
           await topicModel.findOneAndDelete({ _id: req.params.id });
-          res.status(201).json("Xóa đề tài thành công");
+          res.status(201).json("Delete topic successful");
         } else {
           topic.student = undefined;
           topic.teacher = undefined;
           await topic.save();
-          res.status(201).json("Xóa đề tài thành công");
+          res.status(201).json("Delete topic successful");
         }
       } else {
         await topicModel.findOneAndDelete({ _id: req.params.id });
-        res.status(201).json("Xóa đề tài thành công");
+        res.status(201).json("Delete topic successful");
       }
     } catch (error) {
       throw error;
@@ -78,7 +78,7 @@ module.exports = {
   deleteByManagementTopic: async (req, res) => {
     try {
       await topicModel.findOneAndDelete({ _id: req.params.id });
-      res.status(201).json("Xóa đề tài thành công");
+      res.status(201).json("Delete topic successful");
     } catch (error) {
       throw error;
     }

@@ -57,7 +57,7 @@ function CreateAccount({ setList }) {
         role,
         major,
       });
-      notify("success", "Thêm tài khoản thành công");
+      notify("success", "Add account successfully");
       setList((prev) => [{ ...res?.data, id: res?.data?._id }, ...prev]);
       handleReset();
     } catch (error) {
@@ -69,8 +69,8 @@ function CreateAccount({ setList }) {
   return (
     <Box  mt={4}>
     <Button fullWidth size="large" variant="contained">
-      Quản lý tài khoản
-    </Button>
+        Manage Account
+      </Button>
       <Box
         mt={2}
         p={2}
@@ -88,6 +88,7 @@ function CreateAccount({ setList }) {
             <TextField
               fullWidth
               size="small"
+
               label={isNameFocused ? "Fullname" : ""}
               value={name}
               onChange={handleNameChange}
@@ -179,7 +180,7 @@ function CreateAccount({ setList }) {
             <Grid item xs={6}>
               <SelectMajor value={ major} setValue={setMajor} />
             </Grid>     
-          </Grid>
+         </Grid>
         </Box>
         <Box
           display={"flex"}
@@ -189,7 +190,7 @@ function CreateAccount({ setList }) {
           mt={2}
         >
           <Button variant="contained" type="submit" onClick={handleCreateUser}>
-            Thêm tài khoản
+            Add account
           </Button>
         </Box>
   </Box>

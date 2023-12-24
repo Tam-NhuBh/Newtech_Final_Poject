@@ -12,7 +12,7 @@ const connectDB = async () => {
     if (!ad) {
       await userModel.create(configuration.ADMIN);
     }
-    console.log("Kết nối db thành công");
+    console.log("Connect Database Successful");
   } catch (error) {
     console.log("error db: " + error.message);
   }

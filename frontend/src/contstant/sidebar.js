@@ -22,23 +22,22 @@ export const adminSideBar = [
   {
     name: "Account Management",
     icon: <PersonOutlineIcon />,
-    href: "/account-management",
+    href: "/accountManagement",
   },
   {
     name: "Manage Majors",
     icon: <DescriptionOutlinedIcon />,
-    href: "/major-management",
+    href: "/majorManagement",
   },
   {
     name: "Register Project",
     icon: <AddCircleOutlineIcon />,
-    href: "/admin-sub-topic",
+    href: "/adminSubTopic",
   },
   {
     name: "Manage Registration Periods",
     icon: <CalendarTodayOutlinedIcon />,
-    href: "/period-management",
-
+    href: "/periodManagement",
   },
   ...emptyItems,
 
@@ -49,22 +48,22 @@ export const managementSideBar = [
   {
     name: "Personal Information",
     icon: <PersonOutlineIcon />,
-    href: "/management-info",
+    href: "/managementInfo",
   },
   {
     name: "Submit Project",
     icon: <AddCircleOutlineIcon />,
-    href: "/management-sub-topic",
+    href: "/managementSubTopic",
   },
   {
     name: "Approve Project Submissions",
     icon: <CheckCircleOutlineIcon />,
-    href: "/management-approve-sub-topic",
+    href: "/managementApproveSubTopic",
   },
   {
     name: "Assign Reviewers",
     icon: <RateReviewOutlinedIcon />,
-    href: "/assign-teacher-review",
+    href: "/assignTeacherReview",
   },
 
 ];
@@ -74,22 +73,22 @@ export const teacherSideBar = [
   {
     name: "Personal Information",
     icon: <PersonOutlineIcon />,
-    href: "/teacher-info",
+    href: "/teacherInfo",
   },
   {
     name: "Choose Project",
     icon: <SwitchCameraOutlinedIcon />,
-    href: "/teacher-select-topic",
+    href: "/teacherSelectTopic",
   },
   {
     name: "Register Project",
     icon: <AddCircleOutlineIcon />,
-    href: "/teacher-sub-topic",
+    href: "/teacherSubTopic",
   },
   {
     name: "Assigned Projects for Review",
     icon: <RateReviewOutlinedIcon />,
-    href: "/assigned-review",
+    href: "/assignedReview",
   },
    ...emptyItems,
 
@@ -100,12 +99,12 @@ export const studentSideBar = [
   {
     name: "Personal Information",
     icon: <PersonOutlineIcon />,
-    href: "/student-info",
+    href: "/studentInfo",
   },
   {
     name: "Register Project",
     icon: <AddCircleOutlineIcon />,
-    href: "/sub-topic",
+    href: "/subTopic",
   },
   ...emptyItems,
 ];

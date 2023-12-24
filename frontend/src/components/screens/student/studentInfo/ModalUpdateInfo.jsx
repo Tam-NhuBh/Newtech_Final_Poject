@@ -12,18 +12,11 @@ import SelectMajor from "../../../common/SelectMajor";
 function ModalUpdateInfo({ data, setData, open, handleClose, handleOk }) {
   return (
     <ModalUpdate open={open} handleClose={handleClose} handleOk={handleOk}>
-      <Grid
-          container
-          spacing={2}
-          my={2}
-          sx={{
-            backgroundColor: '#d9e9f9',
-            opacity: 0.9,
-          }}
-        >        <Grid item xs={6}>
+      <Grid container spacing={2} my={2}>
+        <Grid item xs={6}>
           <TextField
             fullWidth
-            label="Họ và tên"
+            label="Full Name"
             size="small"
             value={data?.name}
             onChange={(e) =>
@@ -60,7 +53,7 @@ function ModalUpdateInfo({ data, setData, open, handleClose, handleOk }) {
           <TextField
             fullWidth
             size="small"
-            label="Ngày sinh"
+            label="Birthday"
             value={data?.birth}
             onChange={(e) =>
               setData((prev) => ({ ...prev, birth: e.target.value }))
@@ -70,7 +63,7 @@ function ModalUpdateInfo({ data, setData, open, handleClose, handleOk }) {
         <Grid item xs={6}>
           <TextField
             fullWidth
-            label="Địa chỉ"
+            label="Address"
             size="small"
             value={data?.address}
             onChange={(e) =>
@@ -81,7 +74,7 @@ function ModalUpdateInfo({ data, setData, open, handleClose, handleOk }) {
         <Grid item xs={6}>
           <TextField
             fullWidth
-            label="Số điện thoại"
+            label="Phone"
             size="small"
             value={data?.phone}
             onChange={(e) =>
@@ -100,12 +93,12 @@ function ModalUpdateInfo({ data, setData, open, handleClose, handleOk }) {
             <FormControlLabel
               value={1}
               control={<Radio size="small" />}
-              label="Nam"
+              label="Male"
             />
             <FormControlLabel
               value={0}
               control={<Radio size="small" />}
-              label="Nữ"
+              label="Female"
             />
           </RadioGroup>
         </Grid>

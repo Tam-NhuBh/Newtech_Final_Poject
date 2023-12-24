@@ -13,12 +13,12 @@ const columns = [
       return params.value;
     },
   },
-  { field: "name", headerName: "Họ tên", width: 150 },
+  { field: "name", headerName: "Full Name", width: 150 },
   { field: "email", headerName: "Email", width: 150 },
-  { field: "phone", headerName: "Số điện thoại", width: 150 },
+  { field: "phone", headerName: "Phone", width: 150 },
   {
     field: "major",
-    headerName: "Chuyên ngành",
+    headerName: "Major",
     width: 150,
     valueGetter: (params) => {
       return params.value?.name;
@@ -26,10 +26,10 @@ const columns = [
   },
   {
     field: "role",
-    headerName: "Vai trò",
+    headerName: "Role",
     width: 150,
     valueGetter: (params) => {
-      const value = params?.value == 1 ? "Giảng viên" : "Trưởng bộ môn";
+      const value = params?.value == 1 ? "Lecturer" : "Head";
       return value;
     },
   },
@@ -51,12 +51,9 @@ function GuestContact() {
   return (
     <MainLayout>
       <Button fullWidth size="large" variant="contained">
-        Thông tin liên hệ
+        Contact Info
       </Button>
-      <Box height={300} width={"96%"} mt={4}   sx={{
-        background: "rgba(255, 255, 255, 0.8)",
-        padding: "1rem",
-      }}>
+      <Box height={300} width={"100%"} mt={4} bgcolor="rgba(255, 255, 255, 0.8)">
         <DataGrid rows={listTeacher} columns={columns} />
       </Box>
     </MainLayout>

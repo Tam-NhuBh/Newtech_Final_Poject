@@ -12,10 +12,10 @@ export const update = async (id, payload) =>
 export const list = async () => await request.get("/api/user");
 
 export const getListTeacher = async () =>
-  await request.get("/api/user/get-list-teacher");
+  await request.get("/api/user/getListTeacher");
 
 export const getListTeacherReview = async (id) =>
-  await request.get("/api/user/list-teacher-review/" + id);
+  await request.get("/api/user/listTeacherReview/" + id);
 
 export const deleteUser = async (id) => await request.delete("/api/user/" + id);
 

@@ -6,25 +6,24 @@ function StatusTopic() {
   return (
     <MainLayout type={"student"}>
       <Button fullWidth size="large" variant="contained">
-        Trạng thái đề tài
+        Topic Status
       </Button>
       <Box mt={4}>
-        <Button variant="contained">Đề tài chờ duyệt đăng kí</Button>
+        <Button variant="contained">Topic awaiting approval for registration</Button>
         <Paper elevation={3}>
           <Box p={4}>
             <Typography fontWeight={"bold"}>
-              CÁC QUY ĐỊNH VỀ TRẠNG THÁI
+              STATUS REGULATIONS
             </Typography>
             <Box p={2}>
               <Typography variant="subtitle2" fontWeight={"medium"}>
-                1. Chưa đăng ký đề tài: Tài khoản chưa đăng kí đề tài NCKH
+                1. Not registered for topic: Account has not registered for scientific research topic
               </Typography>
               <Typography variant="subtitle2" fontWeight={"medium"} mt={2}>
-                2. Đang chờ phê duyệt: Đề tài đang được chờ phê duyệt thực hiện
+                2. Waiting for approval: The topic is waiting for approval to be implemented
               </Typography>
               <Typography variant="subtitle2" fontWeight={"medium"} mt={2}>
-                3. Đã được phê duyệt thực hiện: Đề tài đã được phê duyệt tiến
-                hành ký hợp đồng với phòng KH&CN
+                3. Approved for implementation: The project has been approved and signed a contract with the Department of Science and Technology
               </Typography>
             </Box>
           </Box>

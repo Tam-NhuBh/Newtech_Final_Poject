@@ -9,7 +9,7 @@ module.exports = {
         name: body.name,
       });
       if (major) {
-        throw new ErrorResponse(404, "chuyên ngành đã tồn tại");
+        throw new ErrorResponse(404, "majors already exist");
       }
       const data = await majorModel.create(body);
       res.status(201).json(data);
@@ -47,7 +47,7 @@ module.exports = {
   deleteMajor: async (req, res) => {
     try {
       await majorModel.findOneAndDelete({ _id: req.params.id });
-      res.status(201).json("Xóa chuyên ngành thành công");
+      res.status(201).json("Delete major successful");
     } catch (error) {
       throw error;
     }

@@ -10,7 +10,7 @@ function TableUserInfomation({ user, handleUpdate }) {
           <Grid item xs={6}>
             <Grid container spacing={1}>
               <Grid item xs={4}>
-                <Typography variant="subtitle2">Họ và tên:</Typography>
+                <Typography variant="subtitle2">Full Name:</Typography>
               </Grid>
               <Grid item xs={8}>
                 <Typography variant="subtitle2">{user?.name}</Typography>
@@ -34,7 +34,7 @@ function TableUserInfomation({ user, handleUpdate }) {
             </Grid>
             <Grid container spacing={1} mt={2}>
               <Grid item xs={4}>
-                <Typography variant="subtitle2">Ngành:</Typography>
+                <Typography variant="subtitle2">Major:</Typography>
               </Grid>
               <Grid item xs={8}>
                 <Typography variant="subtitle2">{user?.major?.name}</Typography>
@@ -42,7 +42,7 @@ function TableUserInfomation({ user, handleUpdate }) {
             </Grid>
             <Grid container spacing={1} mt={2}>
               <Grid item xs={4}>
-                <Typography variant="subtitle2">Ngày sinh:</Typography>
+                <Typography variant="subtitle2">Birthday:</Typography>
               </Grid>
               <Grid item xs={8}>
                 <Typography variant="subtitle2">{user?.birth}</Typography>
@@ -53,7 +53,7 @@ function TableUserInfomation({ user, handleUpdate }) {
           <Grid item xs={6}>
             <Grid container spacing={1}>
               <Grid item xs={4}>
-                <Typography variant="subtitle2">Mã số:</Typography>
+                <Typography variant="subtitle2">ID:</Typography>
               </Grid>
               <Grid item xs={8}>
                 <Typography variant="subtitle2">{user?._id}</Typography>
@@ -61,7 +61,7 @@ function TableUserInfomation({ user, handleUpdate }) {
             </Grid>
             <Grid container spacing={1} mt={2}>
               <Grid item xs={4}>
-                <Typography variant="subtitle2">Số điện thoại:</Typography>
+                <Typography variant="subtitle2">Phone:</Typography>
               </Grid>
               <Grid item xs={8}>
                 <Typography variant="subtitle2">{user?.phone}</Typography>
@@ -69,7 +69,7 @@ function TableUserInfomation({ user, handleUpdate }) {
             </Grid>
             <Grid container spacing={1} mt={2}>
               <Grid item xs={4}>
-                <Typography variant="subtitle2">Giới tính:</Typography>
+                <Typography variant="subtitle2">Sex:</Typography>
               </Grid>
               <Grid item xs={8}>
                 <Typography variant="subtitle2">
@@ -79,7 +79,7 @@ function TableUserInfomation({ user, handleUpdate }) {
             </Grid>
             <Grid container spacing={1} mt={2}>
               <Grid item xs={4}>
-                <Typography variant="subtitle2">Địa chỉ:</Typography>
+                <Typography variant="subtitle2">Address:</Typography>
               </Grid>
               <Grid item xs={8}>
                 <Typography variant="subtitle2">{user?.address}</Typography>
@@ -93,7 +93,7 @@ function TableUserInfomation({ user, handleUpdate }) {
 
     <Box mt={4} textAlign={"center"}>
       <Button variant="contained" onClick={handleUpdate}>
-        Cập nhật
+        Update
       </Button>
     </Box>
   </React.Fragment>

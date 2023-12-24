@@ -19,14 +19,14 @@ const ConfirmDelete = ({ open, title, content, handleClose, handleOk }) => {
     >
       <DialogTitle id="alert-dialog-title">
         <Typography variant="h6" fontWeight={"bold"}>
-          {title || "XÁC NHẬN XÓA"}
+          {title || "CONFIRM DELETE"}
         </Typography>
       </DialogTitle>
       <DialogContent>
         <DialogContentText id="alert-dialog-description">
           <Typography variant="subtitle2">
             {content ||
-              "Bạn có muốn chắc chắn xóa không? nếu xóa sẽ không thể khôi phục được !"}
+              "Are you sure to delete? If deleted, it cannot be restored!"}
           </Typography>
         </DialogContentText>
       </DialogContent>
@@ -37,10 +37,10 @@ const ConfirmDelete = ({ open, title, content, handleClose, handleOk }) => {
           color="error"
           size="small"
         >
-          Không đồng ý
+          Cancel
         </Button>
         <Button autoFocus onClick={handleOk} size="small" variant="contained">
-          Đồng ý
+          Delete
         </Button>
       </DialogActions>
     </Dialog>

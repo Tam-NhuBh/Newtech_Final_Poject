@@ -14,9 +14,9 @@ const {
 const asyncMiddelware = require("../middlewares/asyncHandle");
 
 router.route("/list").get(asyncMiddelware(list));
-router.route("/topic-of-student/:id").get(asyncMiddelware(findTopicOfStudent));
+router.route("/topicOfStudent/:id").get(asyncMiddelware(findTopicOfStudent));
 router
-  .route("/delete-by-management/:id")
+  .route("/deleteByManagementTopic/:id")
   .delete(asyncMiddelware(deleteByManagementTopic));
 router.route("/:id").put(asyncMiddelware(update));
 router.route("/:id").get(asyncMiddelware(findTopic));

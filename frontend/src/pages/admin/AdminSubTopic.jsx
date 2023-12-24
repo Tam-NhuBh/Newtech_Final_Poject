@@ -27,7 +27,7 @@ const AdminSubTopic = () => {
         major: topicMajor,
         owner: currentUser?._id,
       });
-      notify("success", "Added topic successfully");
+      notify("success", "Add topic successfully");
       clearFields();
     } catch (error) {
       console.log(error);
@@ -50,7 +50,7 @@ const AdminSubTopic = () => {
   return (
     <MainLayout>
       <Button fullWidth size="large" variant="contained">
-        Register topic
+        Register Topic
       </Button>
       <Box mt={4}>
         <Box sx={{ backgroundColor: 'rgba(255, 255, 255, 0.8)' }} p={4} component={"form"} onSubmit={handleSubmit}>
@@ -84,13 +84,13 @@ const FormSection = ({
   return (
     <Grid container spacing={1}>
       <Grid item xs={2}>
-        <Typography variant="subtitle2">Chuyên ngành:</Typography>
+        <Typography variant="subtitle2">Major:</Typography>
       </Grid>
       <Grid item xs={10}>
         <SelectMajor value={topicMajor} setValue={setTopicMajor} />
       </Grid>
       <Grid item xs={2}>
-        <Typography variant="subtitle2">Tên đề tài:</Typography>
+        <Typography variant="subtitle2">Topic Name:</Typography>
       </Grid>
       <Grid item xs={10}>
         <TextField
@@ -101,7 +101,7 @@ const FormSection = ({
         />
       </Grid>
       <Grid item xs={2}>
-        <Typography variant="subtitle2">Mô tả đề tài:</Typography>
+        <Typography variant="subtitle2">Description:</Typography>
       </Grid>
       <Grid item xs={10}>
         <TextField

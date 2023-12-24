@@ -8,13 +8,13 @@ const rows = [
   {
     id: 1,
     teacher: "Ronaldo",
-    title: "Đề tài 1",
+    title: "Topic 1",
     date: "13/11/2023",
   },
   {
     id: 2,
     teacher: "Messi",
-    title: "Đề tài 2",
+    title: "Topic 2",
     date: "13/11/2023",
   },
 ];
@@ -26,15 +26,15 @@ function ApproveSubTopic() {
   const columns = [
     {
       field: "id",
-      headerName: "STT",
+      headerName: "ID",
       width: 50,
       valueGetter: (params) => {
         return params.value;
       },
     },
-    { field: "title", headerName: "Tiêu đề", width: 150 },
-    { field: "teacher", headerName: "Giáo viên HD", width: 150 },
-    { field: "date", headerName: "Ngày đăng kí", width: 150 },
+    { field: "title", headerName: "Title", width: 150 },
+    { field: "teacher", headerName: "Instructor", width: 150 },
+    { field: "date", headerName: "Registration Date", width: 150 },
     {
       field: "",
       headerName: "Action",
@@ -48,10 +48,10 @@ function ApproveSubTopic() {
               color="success"
               onClick={() => setIsOpenMdal(true)}
             >
-              Xác nhận
+              Confirm
             </Button>
             <Button variant="contained" size="small">
-              Chi tiết
+              Details
             </Button>
           </Box>
         );
@@ -61,15 +61,15 @@ function ApproveSubTopic() {
   return (
     <MainLayout type="teacher">
       <Button fullWidth size="large" variant="contained">
-        Duyệt đăng kí đề tài
+        Approve Topic Registration
       </Button>
       <Box height={300} width={"100%"} mt={4}>
         <DataGrid rows={rows} columns={columns} />
       </Box>
       <ConfirmApprove
         open={isOpenModal}
-        title={"Hộp thoại xác nhận"}
-        content={"Bạn có chắc chắn muốn duyệt đề tài này không?"}
+        title={"Confirm Box"}
+        content={"Are you sure you approve this topic?"}
         handleClose={() => setIsOpenMdal(false)}
       />
     </MainLayout>

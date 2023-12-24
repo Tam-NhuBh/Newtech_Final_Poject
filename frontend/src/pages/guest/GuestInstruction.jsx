@@ -11,7 +11,7 @@ function GuestInstruction() {
   return (
     <MainLayout>
       <Button fullWidth size="large" variant="contained">
-        Hướng dẫn
+        Instruct
       </Button>
       <Box
         mt={4}
@@ -23,7 +23,7 @@ function GuestInstruction() {
         sx={{ cursor: "pointer" }}
       >
         <object data={pdfUrl} type="application/pdf" width="850px" height="350px">
-          <p>Không thể hiển thị PDF. <a href={pdfUrl}>Tải xuống PDF</a> thay vì xem trong trình duyệt.</p>
+          <p>Unable to display PDF. <a href={pdfUrl}>Download PDF</a> instead of viewing in the browser.</p>
         </object>
       </Box>
     </MainLayout>

@@ -19,7 +19,7 @@ function TeacherSubTopic() {
         majorId: loggedInUser?.major?._id,
         ownerId: loggedInUser?._id,
       });
-      notify("success", "Successfully added a new topic");
+      notify("success", "Add topic successfully");
     } catch (error) {
       console.log(error);
     }
@@ -41,7 +41,7 @@ function TeacherSubTopic() {
   return (
     <MainLayout>
       <Button fullWidth size="large" variant="contained">
-        Register a Topic
+        Register Topic
       </Button>
       {loggedInUser?.major ? (
         <Box mt={4}>
@@ -96,7 +96,7 @@ function TeacherSubTopic() {
           sx={{ cursor: "pointer" }}
         >
           <Typography variant="subtitle2">
-            You need to update your major information before registering a topic
+            You must update your major information before registering for a topic
           </Typography>
           <Button variant="contained" size="small" href="/teacher-info">
             Update

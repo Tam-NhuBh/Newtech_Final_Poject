@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import CreateAccount from "../../components/screens/admin/account-management/CreateAccount";
-import InfoAccount from "../../components/screens/admin/account-management/InfoAccount";
+import CreateAccount from "../../components/screens/admin/accountManagement/CreateAccount";
+import InfoAccount from "../../components/screens/admin/accountManagement/InfoAccount";
 import MainLayout from "../../components/layout/MainLayout";
 import { list } from "../../utils/api/user";
 
@@ -24,10 +24,9 @@ function AccountManagement() {
   }, []);
   return (
     <MainLayout>
-      <InfoAccount data={listUser} setList={setListUser} />
       <CreateAccount setList={setListUser} />
-
-      </MainLayout>
+      <InfoAccount data={listUser} setList={setListUser} />
+    </MainLayout>
   );
 }
 

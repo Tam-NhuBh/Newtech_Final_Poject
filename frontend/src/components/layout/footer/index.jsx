@@ -13,18 +13,16 @@ function Footer() {
   return (
     <WhiteBox>
       <Typography fontSize={12} color="#1a5792" mb={1}>
-        Trường Đại Học Sư Phạm Kỹ Thuật - Tp.HCM
+        Ho Chi Minh City University Technology and Education
       </Typography>
       <Typography fontSize={12} color="#1a5792" mb={1}>
-        Địa chỉ: 1 Võ Văn Ngân, Phường Linh Chiểu, Thành phố Thủ Đức, Thành
-        phố Hồ Chí Minh.
+        Address: 1 Vo Van Ngan, Linh Chieu Ward, Thu Duc City, Ho Chi Minh City.
       </Typography>
       <Typography fontSize={12} color="#1a5792" mb={1}>
-        Điện thoại: (+84 - 028) 38968641 - (+84 -028) 38961333 - (+84 -028)
-        37221223
+        Phone: (+84 - 028) 38968641 - (+84 -028) 38961333 - (+84 -028) 37221223
       </Typography>
       <Typography fontSize={12} color="#1a5792" mb={1}>
-        Hotline Tư vấn tuyển sinh: (+84 - 028) 37222764
+        Admissions Consulting Hotline: (+84 - 028) 37222764
       </Typography>
       <Typography fontSize={12} color="#1a5792" mb={1}>
         Fax: (+84 - 028) 38964922

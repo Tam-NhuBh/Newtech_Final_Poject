@@ -18,17 +18,17 @@ function SubTopic() {
   const columns = [
     {
       field: "id",
-      headerName: "STT",
+      headerName: "ID",
 
       valueGetter: (params) => {
         return params.value;
       },
     },
-    { field: "title", headerName: "Tên đề tài", width: 150 },
-    { field: "description", headerName: "Mô tả", width: 300 },
+    { field: "title", headerName: "Title", width: 150 },
+    { field: "description", headerName: "Description", width: 300 },
     {
       field: "teacher",
-      headerName: "Giáo viên hướng dẫn",
+      headerName: "Instructor",
       width: 200,
       valueGetter: (params) => {
         return params.value?.name;
@@ -45,7 +45,7 @@ function SubTopic() {
               size="small"
               onClick={() => handleSubTopic(params.row.id)}
             >
-              Đăng kí
+              Register
             </Button>
           </Box>
         );
@@ -58,11 +58,11 @@ function SubTopic() {
       if (currentTopic) {
         notify(
           "info",
-          "Bạn đã đăng kí đề tài, hãy chọn quản lý đề tài để xem chi tiết"
+          "You have registered for the topic, select manage topic to view details"
         );
       } else {
         await update(id, { student: currentUser?._id });
-        notify("success", "Cập nhật thành công");
+        notify("success", "Update successfully");
         await getListTopic();
       }
     } catch (error) {
@@ -125,12 +125,12 @@ function SubTopic() {
       console.log({ today, timeOpen });
 
       if (today.isBefore(timeOpen)) {
-        setText("Chưa đến thời gian đăng kí đề tài. Vui lòng vào lại sau !");
+        setText("It's not time to register yet. Please come back later!");
       }
 
       if (today.isAfter(timeClose)) {
         setText(
-          "Đã hết thời gian đăng kí đề tài. Vui lòng liên hệ với GVHD để nhận được trợ giúp!"
+          "The time for registration has expired. Please contact your instructor for help!"
         );
       }
     };
@@ -140,7 +140,7 @@ function SubTopic() {
   return (
     <MainLayout type="student">
       <Button fullWidth size="large" variant="contained">
-        Đăng kí đề tài
+        Register Topic
       </Button>
 
       {!currentUser?.major ? (
@@ -154,10 +154,10 @@ function SubTopic() {
           
         >
           <Typography variant="subtitle2">
-            Bạn phải cập nhật thông tin chuyên ngành trước khi đăng kí đề tài
+            You must update your major information before registering for a topic
           </Typography>
           <Button variant="contained" size="small" href="/student-info">
-            Cập nhật
+            Update
           </Button>
         </Box>
       ) : currentPeriod ? (
@@ -167,7 +167,7 @@ function SubTopic() {
               {text}
             </Typography>
             <Typography variant="subtitle2" mt={2}>
-              Thời gian đăng kí đề tài: {currentPeriod.timeOpen} -{" "}
+              Topic registration time: {currentPeriod.timeOpen} -{" "}
               {currentPeriod.timeClose}
             </Typography>
           </>
@@ -184,7 +184,7 @@ function SubTopic() {
       ) : (
         <>
           <Typography variant="subtitle2" mt={2}>
-            Chưa có lịch để đăng kí.
+            There is no date to register yet.
           </Typography>
         </>
       )}

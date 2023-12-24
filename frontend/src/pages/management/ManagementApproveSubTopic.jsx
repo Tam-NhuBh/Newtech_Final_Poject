@@ -19,21 +19,21 @@ function ManagementApproveSubTopic() {
   const columns = [
     {
       field: "id",
-      headerName: "STT",
+      headerName: "ID",
       width: 50,
       valueGetter: (params) => {
         return params.value;
       },
     },
-    { field: "title", headerName: "Tiêu đề", width: 150 },
+    { field: "title", headerName: "Title", width: 150 },
     {
       field: "description",
-      headerName: "Mô tả",
+      headerName: "Description",
       width: 150,
     },
     {
       field: "teacher",
-      headerName: "Giáo viên HD",
+      headerName: "Instructor",
       width: 150,
       valueGetter: (params) => {
         return params.value?.name;
@@ -41,7 +41,7 @@ function ManagementApproveSubTopic() {
     },
     {
       field: "createdAt",
-      headerName: "Ngày đăng kí",
+      headerName: "Registration date",
       width: 150,
       valueGetter: (params) => {
         return moment(params.value?.name).format("DD-MM-YYYY");
@@ -62,7 +62,7 @@ function ManagementApproveSubTopic() {
                 setIdTopicUpdate(params.row._id);
               }}
             >
-              Xác nhận
+              Confirm
             </Button>
           </Box>
         );
@@ -85,7 +85,7 @@ function ManagementApproveSubTopic() {
       await update(idTopicUpdate, { approveByManagement: 1 });
       await getListTopic();
       setIsOpenMdal(false);
-      notify("success", "Phê duyệt đề tài thành công");
+      notify("success", "Approved topic successfully");
     } catch (error) {
       console.log(error);
     }
@@ -111,15 +111,15 @@ function ManagementApproveSubTopic() {
   return (
     <MainLayout>
       <Button fullWidth size="large" variant="contained">
-        Duyệt đăng kí đề tài
+        Approve Topic Registration
       </Button>
       <Box height={300} width={"100%"} mt={4}>
         <DataGrid rows={listTopic} columns={columns} />
       </Box>
       <ConfirmApprove
         open={isOpenModal}
-        title={"Hộp thoại xác nhận"}
-        content={"Bạn có chắc chắn muốn duyệt đề tài này không?"}
+        title={"Confirm Box"}
+        content={"Are you sure you approve this topic?"}
         handleClose={() => setIsOpenMdal(false)}
         handleOk={handleApprove}
       />

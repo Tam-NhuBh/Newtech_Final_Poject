@@ -40,7 +40,7 @@ function PeriodManagement() {
               setIdDelete(params.row._id);
             }}
           >
-            Xóa
+            Delete
           </Button>
         </Box>
       ),
@@ -59,7 +59,7 @@ function PeriodManagement() {
   const handleDelete = async () => {
     try {
       await deletePeriod(idDelete);
-      notify("success", "Deleted successfully");
+      notify("success", "Delete successfully");
       setIsOpenConfirmDelete(false);
       getListPeriod();
     } catch (error) {
@@ -72,7 +72,7 @@ function PeriodManagement() {
     try {
       await create(formData);
       getListPeriod();
-      notify("success", "Created successfully");
+      notify("success", "Create successfully");
     } catch (error) {
       notify("error", error?.response?.data?.message);
     }
@@ -90,7 +90,7 @@ function PeriodManagement() {
   return (
     <MainLayout>
       <Button fullWidth size="large" variant="contained">
-        Manage topic registration time
+        Manage topic Registration Time
       </Button>
 
       <Box

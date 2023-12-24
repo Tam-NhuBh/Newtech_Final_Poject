@@ -9,7 +9,7 @@ module.exports = {
       });
 
       if (period) {
-        throw new ErrorResponse(404, "Chuyên ngành đã có thời gian đăng kí");
+        throw new ErrorResponse(404, "Major already have registration time");
       }
       const data = await periodModel.create(req.body);
       res.status(201).json(data);
@@ -32,7 +32,7 @@ module.exports = {
   deletePeriod: async (req, res) => {
     try {
       await periodModel.findOneAndDelete({ _id: req.params.id });
-      res.status(201).json("Xóa  thành công");
+      res.status(201).json("Delete successful");
     } catch (error) {
       throw error;
     }
