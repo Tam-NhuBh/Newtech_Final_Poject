@@ -63,11 +63,12 @@ function Login() {
       //document.body.removeChild(script)
     }
   }, []);
-  const handleGoogleLogin = () => {
+  const handleGoogleLoginClick = () => {
+    console.log("handleGoogleLoginClick")
+    // Trigger Google login when the button is clicked   
     if (window.onGoogleSuccess) {
       window.onGoogleSuccess();
     }
-    notify("info", "Redirecting to Google Login...");
   };
 
   return (
@@ -101,15 +102,9 @@ function Login() {
               <Button fullWidth size="medium" variant="contained" type="submit">
                 Login
               </Button>
-              <Button
-                fullWidth
-                size="medium"
-                variant="contained"
-                startIcon={<GoogleIcon />} // Add Google icon to the button
-                onClick={handleGoogleLogin}
-                sx={{ backgroundColor: "brown" }} 
-              >
-                Login with Google
+              <Button className="mt-6" block layout="outline" onClick={handleGoogleLoginClick}>
+                <GoogleIcon className="w-6 h-6 mr-2" aria-hidden="true"  />
+                Google
               </Button>
             </Stack>
           </Box>

@@ -17,12 +17,12 @@ function TeacherSelectTopic() {
       width: 200,
     },
     { field: "title", headerName: "Title", width: 150 },
-    { field: "description", headerName: "Description", width: 150 },
+    { field: "description", headerName: "Description", width: 300 },
 
     {
       field: "",
-      headerName: "Action",
-      width: 200,
+
+      width: 150,
       renderCell: (params) => {
         return (
           <Box display={"flex"} gap={2} alignItems={"center"}>

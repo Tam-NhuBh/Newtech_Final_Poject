@@ -189,8 +189,8 @@ function InfoAccount({ data, setList }) {
 
   return (
     
-    <Box>
-      <Box height={"20vh"} width={"100%"} mt={0}  sx={{backgroundColor: 'rgba(255, 255, 255, 0.8)'}}>
+    <Box mt={3}>
+      <Box height={"40vh"} width={"100%"} mt={0}  sx={{backgroundColor: 'rgba(255, 255, 255, 0.8)'}}>
         <DataGrid rows={data} columns={columns} hideFooter={true} />
       </Box>
       <ConfirmDelete

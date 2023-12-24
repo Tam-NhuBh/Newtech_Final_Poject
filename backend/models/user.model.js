@@ -8,13 +8,13 @@ const userSchema = mongoose.Schema(
 
     username: {
       type: String,
-      required: true,
+      required: false,
       unique: true,
     },
 
     password: {
       type: String,
-      required: true,
+      required: false,
     },
 
     email: {
@@ -40,7 +40,7 @@ const userSchema = mongoose.Schema(
       type: Number,
     },
 
-    // 0: student 1:teacher 2:management 3:admin
+    // 0: student 1:teacher 2:dpmhead 3:admin
     role: {
       type: Number,
       default: 0,

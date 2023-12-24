@@ -11,7 +11,7 @@ function GuestInstruction() {
   return (
     <MainLayout>
       <Button fullWidth size="large" variant="contained">
-        Instruct
+        Instruction
       </Button>
       <Box
         mt={4}

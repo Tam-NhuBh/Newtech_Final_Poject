@@ -48,17 +48,19 @@ function TeacherHome() {
       headerName: "Status",
       width: 200,
       renderCell: (params) => {
-        const label =
-          params.row.approveByManagement == 0
-            ? "Not Approved"
-            : "Approved";
-        const color = params.row.approveByManagement == 0 ? "error" : "success";
-        return <Chip label={label} color={color} />;
+        const label = params.row.approveByManagement === 0 ? 'Not Approved' : 'Approved';
+        const colorText = params.row.approveByManagement === 0 ? 'red' : 'green';
+
+        return (
+          <span style={{ color: colorText }}>
+            {label}
+          </span>
+        );
       },
     },
     {
       field: "",
-      width: 200,
+      width: 250,
       renderCell: (params) => {
         return (
           <Box display={"flex"} gap={2} alignItems={"center"}>
