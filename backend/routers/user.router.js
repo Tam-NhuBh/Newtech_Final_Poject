@@ -15,9 +15,9 @@ const {
 const asyncMiddelware = require("../middlewares/asyncHandle");
 
 router.route("/login").post(asyncMiddelware(login));
-router.route("/get-list-teacher").get(asyncMiddelware(getListTeacher));
+router.route("/getListTeacher").get(asyncMiddelware(getListTeacher));
 router
-  .route("/list-teacher-review/:id")
+  .route("/listTeacherReview/:id")
   .get(asyncMiddelware(listTeacherReview));
 router.route("/:id").put(asyncMiddelware(update));
 router.route("/:id").delete(asyncMiddelware(deleteUser));

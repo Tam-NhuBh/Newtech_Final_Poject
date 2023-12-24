@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Box, Button } from "@mui/material";
-import ModalUpdateInfo from "../../components/screens/student/student-info/ModalUpdateInfo";
-import TableUserInfomation from "../../components/screens/student/student-info/TableUserInfomation";
+import ModalUpdateInfo from "../../components/screens/student/studentInfo/ModalUpdateInfo";
+import TableUserInfomation from "../../components/screens/student/studentInfo/TableUserInfomation";
 import MainLayout from "../../components/layout/MainLayout";
 import { findUser, update } from "../../utils/api/user";
 import { notify } from "../../utils/helpers/notify";
@@ -16,7 +16,7 @@ function StudentInfo() {
       setCurrentUser(res.data);
       console.log(res.data);
       setIsOpenModalUpdate(false);
-      notify("success", "Cập nhật tài khoản thành công");
+      notify("success", "Update account successfully");
     } catch (error) {
       console.log(error);
     }
@@ -38,7 +38,7 @@ function StudentInfo() {
   return (
     <MainLayout type={"student"}>
       <Button fullWidth size="large" variant="contained">
-        Thông tin sinh viên
+        Student Information
       </Button>
       <Box mt={4}>
         <TableUserInfomation

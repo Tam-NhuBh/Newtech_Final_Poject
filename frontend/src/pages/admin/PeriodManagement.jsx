@@ -18,17 +18,17 @@ function PeriodManagement() {
   const columns = [
     {
       field: "major",
-      headerName: "Tên chuyên ngành",
+      headerName: "Major Name",
       width: 200,
       valueGetter: (params) => {
         return params.value?.name;
       },
     },
-    { field: "timeOpen", headerName: "Thời gian mở", width: 200 },
-    { field: "timeClose", headerName: "Thời gian đóng", width: 200 },
+    { field: "timeOpen", headerName: "Open time", width: 200 },
+    { field: "timeClose", headerName: "Close time", width: 200 },
     {
       field: "",
-      headerName: "Hành động",
+      headerName: "Action",
       width: 200,
       renderCell: (params) => {
         return (
@@ -41,7 +41,7 @@ function PeriodManagement() {
                 setIdDelete(params.row._id);
               }}
             >
-              Xóa
+              Delete
             </Button>
           </Box>
         );
@@ -61,7 +61,7 @@ function PeriodManagement() {
   const handleDelete = async () => {
     try {
       await deletePeriod(idDelete);
-      notify("success", "Xóa thành công");
+      notify("success", "Delete successfully");
       setIsOpenConfirmDelete(false);
       getListPeriod();
     } catch (error) {
@@ -74,7 +74,7 @@ function PeriodManagement() {
     try {
       await create({ timeClose, timeOpen, major });
       getListPeriod();
-      notify("success", "Tạo thành công");
+      notify("success", "Create successfully");
     } catch (error) {
       notify("error", error?.response?.data?.message);
     }
@@ -94,7 +94,7 @@ function PeriodManagement() {
   return (
     <MainLayout>
       <Button fullWidth size="large" variant="contained">
-        Quản lý thời gian đăng kí đề tài
+        Manage Topic Registration Time
       </Button>
       <Box mt={4} component={"form"} onSubmit={handleCreatePeriod}>
         <Grid container spacing={2}>
@@ -102,7 +102,7 @@ function PeriodManagement() {
             <TextField
               fullWidth
               size="small"
-              label="Thời gian mở"
+              label="Open time"
               placeholder="DD/MM/YYY"
               required
               value={timeOpen}
@@ -114,7 +114,7 @@ function PeriodManagement() {
             <TextField
               fullWidth
               size="small"
-              label="Thời gian đóng"
+              label="Close time"
               placeholder="DD/MM/YYY"
               required
               value={timeClose}
@@ -126,7 +126,7 @@ function PeriodManagement() {
           </Grid>
           <Grid item xs={6}>
             <Button variant="contained" type="submit">
-              Tạo
+              Create
             </Button>
           </Grid>
         </Grid>

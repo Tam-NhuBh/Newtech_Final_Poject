@@ -25,16 +25,16 @@ function MajorManagement() {
   const columns = [
     {
       field: "id",
-      headerName: "Mã chuyên ngành",
+      headerName: "Major Id",
       width: 150,
     },
-    { field: "name", headerName: "Tên chuyên ngành", width: 300 },
+    { field: "name", headerName: "Major Name", width: 300 },
     {
       field: "isBlock",
-      headerName: "Trạng thái",
+      headerName: "Status",
       width: 150,
       renderCell: (params) => {
-        const label = params.row.isBlock > 0 ? "Mở" : "Khóa";
+        const label = params.row.isBlock > 0 ? "Available" : "Inavailable";
         const color = params.row.isBlock > 0 ? "success" : "error";
 
         return <Chip label={label} color={color} />;
@@ -42,7 +42,7 @@ function MajorManagement() {
     },
     {
       field: "",
-      headerName: "Hành động",
+      headerName: "Action",
       width: 250,
       renderCell: (params) => {
         return (
@@ -55,7 +55,7 @@ function MajorManagement() {
                 setMajorUpdate(listMajor?.find((i) => i.id == params.row.id));
               }}
             >
-              Cập nhật
+              Update
             </Button>
           </Box>
         );
@@ -69,7 +69,7 @@ function MajorManagement() {
       const res = await create({ name });
       setName("");
       setListMajor((prev) => [{ ...res?.data, id: res?.data?._id }, ...prev]);
-      notify("success", "Tạo chuyên ngành thành công");
+      notify("success", "Add major successfully");
     } catch (error) {
       console.log(error);
       notify("error", error?.response?.data?.message);
@@ -84,7 +84,7 @@ function MajorManagement() {
         ...rest,
       });
 
-      notify("success", "Cập nhật thành công");
+      notify("success", "Update successfully");
       const newData = listMajor?.map((i) => {
         if (i._id === _id) return { id: res?.data?._id, ...res?.data };
         else return i;
@@ -112,7 +112,7 @@ function MajorManagement() {
     <MainLayout>
       <Box>
         <Button fullWidth size="large" variant="contained">
-          Quản lý chuyên ngành
+          Manage Major
         </Button>
         <Box mt={2}>
           <Grid
@@ -125,7 +125,7 @@ function MajorManagement() {
               <TextField
                 fullWidth
                 size="small"
-                label="name"
+                label="Name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 required
@@ -141,7 +141,7 @@ function MajorManagement() {
                 height={"100%"}
               >
                 <Button variant="contained" type="submit">
-                  Thêm chuyên ngành
+                  Add Major
                 </Button>
               </Box>
             </Grid>
@@ -156,7 +156,7 @@ function MajorManagement() {
           handleOk={handleUpdateMajor}
         >
           <Typography variant="subtitle2" my={2}>
-            Tên chuyên ngành:
+            Major Name:
           </Typography>
           <TextField
             fullWidth
@@ -167,7 +167,7 @@ function MajorManagement() {
             }
           />
           <Typography variant="subtitle2" my={2}>
-            Trạng thái
+            Status
           </Typography>
           <RadioGroup
             row
@@ -179,12 +179,12 @@ function MajorManagement() {
             <FormControlLabel
               value={1}
               control={<Radio size="small" />}
-              label="Mở"
+              label="Available"
             />
             <FormControlLabel
               value={0}
               control={<Radio size="small" />}
-              label="Đóng"
+              label="Inavailable"
             />
           </RadioGroup>
         </ModalUpdate>

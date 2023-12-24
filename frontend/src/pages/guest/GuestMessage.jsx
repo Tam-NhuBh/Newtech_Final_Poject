@@ -6,12 +6,12 @@ import { DataGrid } from "@mui/x-data-grid";
 const rows = [
   {
     id: 1,
-    title: "Thông báo tuyển sinh",
+    title: "Admission notification",
     date: "05/09/2023",
   },
   {
     id: 2,
-    title: "Thông báo đăng kí đề tài",
+    title: "Topic registration notification",
     date: "13/11/2023",
   },
 ];
@@ -19,13 +19,13 @@ const rows = [
 const columns = [
   {
     field: "id",
-    headerName: "STT",
+    headerName: "ID",
     valueGetter: (params) => {
       return params.value;
     },
   },
-  { field: "title", headerName: "Tiêu đề", width: 300 },
-  { field: "date", headerName: "Ngày đăng", width: 200 },
+  { field: "title", headerName: "Title", width: 300 },
+  { field: "date", headerName: "Registration Date", width: 200 },
   {
     field: "",
     width: 200,
@@ -33,7 +33,7 @@ const columns = [
       return (
         <Box display={"flex"} gap={2} alignItems={"center"}>
           <Button variant="contained" size="small">
-            Chi tiết
+            Details
           </Button>
         </Box>
       );
@@ -45,7 +45,7 @@ function GuestMessage() {
   return (
     <MainLayout>
       <Button fullWidth size="large" variant="contained">
-        Thông báo
+        Notification
       </Button>
       <Box height={300} width={"100%"} mt={4} bgcolor="rgba(255, 255, 255, 0.6)">
         <DataGrid rows={rows} columns={columns} />

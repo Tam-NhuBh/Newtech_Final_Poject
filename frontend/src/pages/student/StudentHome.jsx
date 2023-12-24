@@ -48,16 +48,16 @@ function StudentHome() {
   return (
     <MainLayout type="student">
       <Button fullWidth size="large" variant="contained">
-        Quản lý đề tài
+        Manage Topic
       </Button>
       <Box mt={4} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.8)', padding: 2 }}>
         {currentTopic ? (
           <>
             <Typography variant="subtitle2">
-              Tên đề tài: {currentTopic?.title}
+              Topic Name: {currentTopic?.title}
             </Typography>
             <Typography variant="subtitle2" mt={2}>
-              Mô tả đề tài: {currentTopic?.description}
+              Description: {currentTopic?.description}
             </Typography>
             <Box mt={4} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
               <Timeline position="alternate">
@@ -71,7 +71,7 @@ function StudentHome() {
                   <TimelineContent>
                     <Accordion>
                       <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                        <Typography>Giai đoạn 1</Typography>
+                        <Typography>State 1</Typography>
                       </AccordionSummary>
                       <AccordionDetails>
                         <Box mt={4}>
@@ -80,12 +80,12 @@ function StudentHome() {
                             textAlign={"center"}
                             fontWeight={"bold"}
                           >
-                            Báo cáo tiến độ
+                            Progress Report
                           </Typography>
                           <Grid container mt={4}>
                             <Grid item xs={3}>
                               <Typography variant="subtitle2">
-                                Nộp báo cáo:
+                                Submit Report:
                               </Typography>
                             </Grid>
                             <Grid item xs={8}>
@@ -95,7 +95,7 @@ function StudentHome() {
                           <Grid container mt={4}>
                             <Grid item xs={3}>
                               <Typography variant="subtitle2">
-                                Tiến độ:
+                                Progress:
                               </Typography>
                             </Grid>
                             <Grid item xs={8}>
@@ -108,7 +108,7 @@ function StudentHome() {
                             mt={2}
                           >
                             <Button variant="contained" size="small">
-                              Cập nhật
+                              Update
                             </Button>
                           </Box>
                         </Box>
@@ -130,7 +130,7 @@ function StudentHome() {
                         aria-controls="panel1a-content"
                         id="panel1a-header"
                       >
-                        <Typography>Giai đoạn 2</Typography>
+                        <Typography>Stage 2</Typography>
                       </AccordionSummary>
                       <AccordionDetails>
                         <Box mt={4}>
@@ -139,12 +139,12 @@ function StudentHome() {
                             textAlign={"center"}
                             fontWeight={"bold"}
                           >
-                            Báo cáo tiến độ
+                            Progress Report
                           </Typography>
                           <Grid container mt={4}>
                             <Grid item xs={3}>
                               <Typography variant="subtitle2">
-                                Nộp báo cáo:
+                                Submit Report:
                               </Typography>
                             </Grid>
                             <Grid item xs={8}>
@@ -154,7 +154,7 @@ function StudentHome() {
                           <Grid container mt={4}>
                             <Grid item xs={3}>
                               <Typography variant="subtitle2">
-                                Tiến độ:
+                                Progress:
                               </Typography>
                             </Grid>
                             <Grid item xs={8}>
@@ -167,7 +167,7 @@ function StudentHome() {
                             mt={2}
                           >
                             <Button variant="contained" size="small">
-                              Cập nhật
+                              Update
                             </Button>
                           </Box>
                         </Box>
@@ -189,7 +189,7 @@ function StudentHome() {
                         aria-controls="panel1a-content"
                         id="panel1a-header"
                       >
-                        <Typography>Giai đoạn 3</Typography>
+                        <Typography>Stage 3</Typography>
                       </AccordionSummary>
                       <AccordionDetails>
                         <Box mt={4}>
@@ -198,12 +198,12 @@ function StudentHome() {
                             textAlign={"center"}
                             fontWeight={"bold"}
                           >
-                            Báo cáo tiến độ
+                            Progress Report
                           </Typography>
                           <Grid container mt={4}>
                             <Grid item xs={3}>
                               <Typography variant="subtitle2">
-                                Nộp báo cáo:
+                                Submit Report:
                               </Typography>
                             </Grid>
                             <Grid item xs={8}>
@@ -213,7 +213,7 @@ function StudentHome() {
                           <Grid container mt={4}>
                             <Grid item xs={3}>
                               <Typography variant="subtitle2">
-                                Tiến độ:
+                                Progress:
                               </Typography>
                             </Grid>
                             <Grid item xs={8}>
@@ -226,7 +226,7 @@ function StudentHome() {
                             mt={2}
                           >
                             <Button variant="contained" size="small">
-                              Cập nhật
+                              Update
                             </Button>
                           </Box>
                         </Box>
@@ -247,10 +247,10 @@ function StudentHome() {
             sx={{ cursor: "pointer" }}
           >
             <Typography variant="subtitle2">
-              Hiện tại bạn chưa đăng kí đề tài nào
+              You are currently not registered for any topics
             </Typography>
             <Button variant="contained" size="small" href="/sub-topic">
-              Đăng kí
+              Register
             </Button>
           </Box>
         )}

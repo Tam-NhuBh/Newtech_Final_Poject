@@ -7,7 +7,7 @@ import { list } from "../../utils/api/topic";
 const columns = [
   {
     field: "id",
-    headerName: "STT",
+    headerName: "ID",
     width: 50,
     valueGetter: (params) => {
       return params.value;
@@ -15,7 +15,7 @@ const columns = [
   },
   {
     field: "student",
-    headerName: "Người thực hiện",
+    headerName: "Student",
     width: 200,
     valueGetter: (params) => {
       return params.value?.name;
@@ -23,7 +23,7 @@ const columns = [
   },
   {
     field: "teacher",
-    headerName: "Giáo viên hướng dẫn",
+    headerName: "Instructor",
     width: 150,
     valueGetter: (params) => {
       return params.value?.name;
@@ -31,12 +31,12 @@ const columns = [
   },
   {
     field: "title",
-    headerName: "Tên đề tài",
+    headerName: "Topic Name",
     width: 150,
   },
   {
     field: "description",
-    headerName: "Mô tả đề tài",
+    headerName: "Description",
     width: 150,
   },
 ];
@@ -61,7 +61,7 @@ function GuestPreference() {
   return (
     <MainLayout>
       <Button fullWidth size="large" variant="contained">
-        Tài liệu tham khảo
+        References
       </Button>
       <Box height={300} width={"100%"} mt={4} bgcolor="rgba(255, 255, 255, 0.8)">
         <DataGrid rows={listTopic} columns={columns} />

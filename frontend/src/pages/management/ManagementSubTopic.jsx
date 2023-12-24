@@ -25,7 +25,7 @@ function ManagementSubTopic() {
         major: currentUser?.major?._id,
         owner: currentUser?._id,
       });
-      notify("success", "Thêm đề tài thành công");
+      notify("success", "Add topic successfully");
       handleClear();
     } catch (error) {
       console.log(error);
@@ -48,13 +48,13 @@ function ManagementSubTopic() {
   return (
     <MainLayout>
       <Button fullWidth size="large" variant="contained">
-        Đăng kí đề tài
+        Register Topic
       </Button>
       {currentUser?.major ? (
         <Box p={4} component={"form"} onSubmit={handleCreateTopic}>
           <Grid container spacing={1}>
             <Grid item xs={2}>
-              <Typography variant="subtitle2">Tên đề tài:</Typography>
+              <Typography variant="subtitle2">Topic Name:</Typography>
             </Grid>
             <Grid item xs={10}>
               <TextField
@@ -67,7 +67,7 @@ function ManagementSubTopic() {
           </Grid>
           <Grid container spacing={1} mt={1}>
             <Grid item xs={2}>
-              <Typography variant="subtitle2">Mô tả đề tài:</Typography>
+              <Typography variant="subtitle2">Description:</Typography>
             </Grid>
             <Grid item xs={10}>
               <TextField
@@ -85,7 +85,7 @@ function ManagementSubTopic() {
               Clear
             </Button>
             <Button variant="contained" type="submit">
-              Đăng kí
+              Register
             </Button>
           </Box>
         </Box>
@@ -99,10 +99,10 @@ function ManagementSubTopic() {
           sx={{ cursor: "pointer" }}
         >
           <Typography variant="subtitle2">
-            Bạn phải cập nhật thông tin chuyên ngành trước khi đăng kí đề tài
+            You must update your major information before registering for a topic
           </Typography>
           <Button variant="contained" size="small" href="/management-info">
-            Cập nhật
+            Update
           </Button>
         </Box>
       )}

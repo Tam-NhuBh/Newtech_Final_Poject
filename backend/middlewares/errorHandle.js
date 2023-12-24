@@ -3,7 +3,7 @@ module.exports = (err, req, res, next) => {
 
   if (err.name === "CastError") {
     error.statusCode = 404;
-    error.message = `Không có dữ liệu`;
+    error.message = `No data`;
   }
 
   if (err.statusCode === 404) {
@@ -23,11 +23,11 @@ module.exports = (err, req, res, next) => {
 
   if (err.code === 11000) {
     error.statusCode = 400;
-    error.message = "Dữ liệu này đã tồn tại";
+    error.message = "This data already exists";
   }
 
   const statusCode = error.statusCode || 500;
-  const message = error.message || "Lỗi server";
+  const message = error.message || "Server error";
 
   res.status(statusCode).json({
     statusCode,

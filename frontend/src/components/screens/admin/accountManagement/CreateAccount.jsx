@@ -32,7 +32,7 @@ function CreateAccount({ setList }) {
         role,
         major,
       });
-      notify("success", "Thêm tài khoản thành công");
+      notify("success", "Add account successfully");
       setList((prev) => [{ ...res?.data, id: res?.data?._id }, ...prev]);
       handleReset();
     } catch (error) {
@@ -43,7 +43,7 @@ function CreateAccount({ setList }) {
   return (
     <Box>
       <Button fullWidth size="large" variant="contained">
-        Quản lý tài khoản
+        Manage Account
       </Button>
       <Box mt={2} component={"form"} onSubmit={handleCreateUser}>
         <Grid container spacing={2}>
@@ -51,7 +51,7 @@ function CreateAccount({ setList }) {
             <TextField
               fullWidth
               size="small"
-              label="Họ tên"
+              label="Full Name"
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
@@ -61,7 +61,7 @@ function CreateAccount({ setList }) {
             <TextField
               fullWidth
               size="small"
-              label="Tên đăng nhập"
+              label="Username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               required
@@ -71,7 +71,7 @@ function CreateAccount({ setList }) {
             <TextField
               fullWidth
               size="small"
-              label="Mật khẩu"
+              label="Password"
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -90,15 +90,15 @@ function CreateAccount({ setList }) {
           </Grid>
           <Grid item xs={6}>
             <Select
-              label="Vai trò"
+              label="Role"
               fullWidth
               size="small"
               value={role}
               onChange={(e) => setRole(e.target.value)}
             >
-              <MenuItem value={0}>Sinh Viên</MenuItem>
-              <MenuItem value={1}>Giảng Viên</MenuItem>
-              <MenuItem value={2}>Trường bộ môn</MenuItem>
+              <MenuItem value={0}>Student</MenuItem>
+              <MenuItem value={1}>Lecturer</MenuItem>
+              <MenuItem value={2}>Head</MenuItem>
             </Select>
           </Grid>
           <Grid item xs={6}>
@@ -113,7 +113,7 @@ function CreateAccount({ setList }) {
           mt={2}
         >
           <Button variant="contained" type="submit">
-            Thêm tài khoản
+            Add account
           </Button>
         </Box>
       </Box>

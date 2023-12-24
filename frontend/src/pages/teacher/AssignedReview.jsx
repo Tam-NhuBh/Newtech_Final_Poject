@@ -36,17 +36,17 @@ function AssignedReview() {
   const columns = [
     {
       field: "id",
-      headerName: "Mã đề tài",
+      headerName: "Topic ID",
       width: 150,
       valueGetter: (params) => {
         return params.value;
       },
     },
-    { field: "title", headerName: "Tiêu đề", width: 150 },
-    { field: "description", headerName: "Mô tả", width: 150 },
+    { field: "title", headerName: "Title", width: 150 },
+    { field: "description", headerName: "Description", width: 150 },
     {
       field: "student",
-      headerName: "Sinh viên thực hiện",
+      headerName: "Student",
       width: 150,
       valueGetter: (params) => {
         return params.value?.name;
@@ -54,18 +54,18 @@ function AssignedReview() {
     },
     {
       field: "teacher",
-      headerName: "Giảng viên hướng dẫn",
+      headerName: "Instructor",
       width: 150,
       valueGetter: (params) => {
         return params.value?.name;
       },
     },
-    { field: "dayReivew", headerName: "Ngày phản biện", width: 150 },
+    { field: "dayReivew", headerName: "Review Date", width: 150 },
   ];
   return (
     <MainLayout type="teacher">
       <Button fullWidth size="large" variant="contained">
-        Đề tài được phân công phản biện
+        Topics are assigned for review
       </Button>
       <Box height={300} width={"100%"} mt={4}>
         <DataGrid rows={listTopic} columns={columns} />

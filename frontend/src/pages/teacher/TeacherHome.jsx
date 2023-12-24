@@ -24,27 +24,27 @@ function TeacherHome() {
   const columns = [
     {
       field: "id",
-      headerName: "Mã đề tài",
+      headerName: "Topic ID",
       width: 150,
     },
-    { field: "title", headerName: "Tên đề tài", width: 150 },
-    { field: "description", headerName: "Mô tả", width: 150 },
+    { field: "title", headerName: "Topic Name", width: 150 },
+    { field: "description", headerName: "Description", width: 150 },
     {
       field: "approveByManagement",
-      headerName: "Trạng thái",
+      headerName: "Status",
       width: 200,
       renderCell: (params) => {
         const label =
           params.row.approveByManagement == 0
-            ? "Chưa được phê duyệt"
-            : "Đã được phê duyệt";
+            ? "Not Approved"
+            : "Approved";
         const color = params.row.approveByManagement == 0 ? "error" : "success";
         return <Chip label={label} color={color} />;
       },
     },
     {
       field: "",
-      headerName: "Hành động",
+      headerName: "Action",
       width: 250,
       renderCell: (params) => {
         return (
@@ -57,7 +57,7 @@ function TeacherHome() {
                 setIdUpdate(params.row._id);
               }}
             >
-              Chi tiết
+              Details
             </Button>
             <Button
               variant="outlined"
@@ -68,7 +68,7 @@ function TeacherHome() {
                 setIdDelete(params.row._id);
               }}
             >
-              Hủy đề tài
+              Delete Topic
             </Button>
           </Box>
         );
@@ -79,7 +79,7 @@ function TeacherHome() {
   const handleDelete = async () => {
     try {
       await deleteTopic(idDelete);
-      notify("success", "Xóa tài khoản thành công");
+      notify("success", "Delete successfully");
       setIsOpenConfirmDelete(false);
       setListTopic(listTopic?.filter((e) => e._id !== idDelete));
     } catch (error) {
@@ -102,7 +102,7 @@ function TeacherHome() {
   const handleUpdate = async () => {
     try {
       await update(idUpdate, { title, description });
-      notify("success", "Cập nhật đề tài thành công");
+      notify("success", "Update topic successfully");
       setIsOpenModalUpdate(false);
       getListTopic();
     } catch (error) {
@@ -144,14 +144,14 @@ function TeacherHome() {
   return (
     <MainLayout type="teacher">
       <Button fullWidth size="large" variant="contained">
-        Quản lý đề tài
+        Manage Topic
       </Button>
       <Box height={"70vh"} width={"100%"} mt={4}>
         <DataGrid rows={listTopic} columns={columns} hideFooter={true} />
       </Box>
       <ConfirmDelete
-        title={"Hủy đề tài"}
-        content={"Bạn có chắc chắn muốn hủy đề tài này không ?"}
+        title={"Delete Topic"}
+        content={"Are you sure to delete this topic?"}
         open={isOpenConfirmDelete}
         handleOk={handleDelete}
         handleClose={() => setIsOpenConfirmDelete(false)}
@@ -160,7 +160,7 @@ function TeacherHome() {
         open={isOpenModalUpdate}
         handleClose={() => setIsOpenModalUpdate(false)}
         handleOk={handleUpdate}
-        title={"Hộp thoại chi tiết"}
+        title={"Details Box"}
       >
         <Grid container spacing={2} py={2}>
           {infoTopicUpdate?.owner === currentUser?._id ? (
@@ -168,7 +168,7 @@ function TeacherHome() {
               <Grid item xs={12}>
                 <TextField
                   fullWidth
-                  label="Tên đề tài"
+                  label="Topic Name"
                   size="small"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
@@ -177,7 +177,7 @@ function TeacherHome() {
               <Grid item xs={12}>
                 <TextField
                   fullWidth
-                  label="Mô tả đề tài"
+                  label="Description"
                   size="small"
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
@@ -190,12 +190,12 @@ function TeacherHome() {
             <>
               <Grid item xs={6}>
                 <Typography variant="subtitle2">
-                  Tên đề tài: {infoTopicUpdate?.title}
+                  Topic Name: {infoTopicUpdate?.title}
                 </Typography>
               </Grid>
               <Grid item xs={6}>
                 <Typography variant="subtitle2">
-                  Sinh viên thực hiện: {infoTopicUpdate?.description}
+                  Student: {infoTopicUpdate?.description}
                 </Typography>
               </Grid>
             </>
@@ -203,28 +203,28 @@ function TeacherHome() {
 
           <Grid item xs={6}>
             <Typography variant="subtitle2">
-              Chuyên ngành: {infoTopicUpdate?.major?.name}
+              Major: {infoTopicUpdate?.major?.name}
             </Typography>
           </Grid>
           <Grid item xs={6}>
             <Typography variant="subtitle2">
-              Sinh viên thực hiện:{" "}
+                Student:{" "}
               {infoTopicUpdate?.student
                 ? infoTopicUpdate?.student?.name
-                : "Không có"}
+                : "Nothing"}
             </Typography>
           </Grid>
           <Grid item xs={6}>
             <Typography variant="subtitle2">
-              Trạng thái:{" "}
+              Status:{" "}
               {infoTopicUpdate?.approveByManagement === 1
-                ? "Đã được phê duyệt"
-                : "Chưa được phê duyệt"}
+                ? "Approved"
+                : "Not Approved"}
             </Typography>
           </Grid>
           <Grid item xs={12}>
             <Typography variant="subtitle2" color={"error"}>
-              *Lưu ý: chỉ cập nhật được đề tài do mình tạo
+              *Note: You can only update topics you create
             </Typography>
           </Grid>
         </Grid>

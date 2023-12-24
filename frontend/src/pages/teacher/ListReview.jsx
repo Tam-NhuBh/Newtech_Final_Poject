@@ -16,13 +16,13 @@ const rows = [
   {
     id: "025981",
     teacher: "Ronaldo",
-    title: "Đề tài 1",
+    title: "Topic 1",
     date: "13/11/2023",
   },
   {
     id: "962682",
     teacher: "Messi",
-    title: "Đề tài 2",
+    title: "Topic 2",
     date: "13/11/2023",
   },
 ];
@@ -34,14 +34,14 @@ function ListReview() {
   const columns = [
     {
       field: "id",
-      headerName: "Mã đề tài",
+      headerName: "Topic ID",
       width: 150,
       valueGetter: (params) => {
         return params.value;
       },
     },
-    { field: "title", headerName: "Tiêu đề", width: 150 },
-    { field: "date", headerName: "Thời gian phản biện", width: 150 },
+    { field: "title", headerName: "Title", width: 150 },
+    { field: "date", headerName: "Review Date", width: 150 },
     {
       field: "",
       headerName: "Action",
@@ -54,7 +54,7 @@ function ListReview() {
               size="small"
               onClick={() => setIsOpenMdal(true)}
             >
-              Xem đánh giá
+              See reviews
             </Button>
           </Box>
         );
@@ -64,7 +64,7 @@ function ListReview() {
   return (
     <MainLayout type="teacher">
       <Button fullWidth size="large" variant="contained">
-        Xem đánh giá
+        See reviews
       </Button>
       <Box mt={4}>
         <SearchTopic />
@@ -75,14 +75,14 @@ function ListReview() {
       <ModalReview
         open={isOpenModal}
         handleOk={() => setIsOpenMdal(false)}
-        title={"Đánh giá phản biện"}
+        title={"Comment the Review"}
         showCancel={false}
-        titleOk={"Đóng"}
+        titleOk={"Close"}
       >
         <Grid container spacing={2}>
           <Grid item xs={4}>
             <Typography variant="subtitle2" mb={2}>
-              Nội dung phản biện:
+              Review's Content:
             </Typography>
           </Grid>
           <Grid item xs={8}>

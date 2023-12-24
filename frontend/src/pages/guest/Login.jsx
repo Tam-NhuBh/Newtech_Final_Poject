@@ -76,7 +76,7 @@ function Login() {
         <Paper elevation={3}>
           <Box minWidth={"20vw"} padding={2}>
             <Typography textAlign={"center"} variant="h5" fontWeight={"bold"}>
-              Đăng nhập
+              Login
             </Typography>
             <Stack gap={2} mt={4} component={"form"} onSubmit={handleLogin}>
               <TextField

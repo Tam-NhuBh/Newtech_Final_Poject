@@ -27,10 +27,10 @@ import AdminHome from "../pages/admin/AdminHome";
 export const listRouter = {
   admin: [
     { path: "/", element: <AdminHome /> },
-    { path: "/account-management", element: <AccountManagement /> },
-    { path: "/admin-sub-topic", element: <AdminSubTopic /> },
-    { path: "/major-management", element: <MajorManagement /> },
-    { path: "/period-management", element: <PeriodManagement /> },
+    { path: "/accountManagement", element: <AccountManagement /> },
+    { path: "/adminSubTopic", element: <AdminSubTopic /> },
+    { path: "/majorManagement", element: <MajorManagement /> },
+    { path: "/periodManagement", element: <PeriodManagement /> },
   ],
   management: [
     {
@@ -38,38 +38,38 @@ export const listRouter = {
       element: <ManagementHome />,
     },
     {
-      path: "/management-info",
+      path: "/managementInfo",
       element: <ManagementInfo />,
     },
     {
-      path: "/management-sub-topic",
+      path: "/managementSubTopic",
       element: <ManagementSubTopic />,
     },
     {
-      path: "/management-approve-sub-topic",
+      path: "/managementApproveSubTopic",
       element: <ManagementApproveSubTopic />,
     },
     {
-      path: "/provider-code-topic",
+      path: "/providerCodeTopic",
       element: <ProviderCodeTopic />,
     },
     {
-      path: "/assign-teacher-review",
+      path: "/assignTeacherReview",
       element: <AssignTeacherReview />,
     },
   ],
   teacher: [
     { path: "/", element: <TeacherHome /> },
-    { path: "/teacher-info", element: <TeacherInfo /> },
-    { path: "/assigned-review", element: <AssignedReview /> },
-    { path: "/teacher-select-topic", element: <TeacherSelectTopic /> },
-    { path: "/teacher-sub-topic", element: <TeacherSubTopic /> },
+    { path: "/teacherInfo", element: <TeacherInfo /> },
+    { path: "/assignedReview", element: <AssignedReview /> },
+    { path: "/teacherSelectTopic", element: <TeacherSelectTopic /> },
+    { path: "/teacherSubTopic", element: <TeacherSubTopic /> },
   ],
   student: [
-    { path: "/student-code-topic", element: <StudentCodeTopic /> },
+    { path: "/studentCodeTopic", element: <StudentCodeTopic /> },
     { path: "/", element: <StudentHome /> },
-    { path: "/student-info", element: <StudentInfo /> },
-    { path: "/sub-topic", element: <SubTopic /> },
+    { path: "/studentInfo", element: <StudentInfo /> },
+    { path: "/subTopic", element: <SubTopic /> },
   ],
   guest: [
     { path: "/", element: <GuestMessage /> },

@@ -6,17 +6,17 @@ function StudentCodeTopic() {
   return (
     <MainLayout type={"student"}>
       <Button fullWidth size="large" variant="contained">
-        Mã số đề tài
+        Topic ID
       </Button>
       <Box mt={4}>
-        <Button variant="contained">Mã đề tài chưa được cấp</Button>
+        <Button variant="contained">Topic ID has not been provided yet</Button>
         <Paper elevation={2}>
           <Box p={4}>
             <Grid container spacing={2}>
               <Grid item xs={6}>
                 <Grid container spacing={1}>
                   <Grid item xs={4}>
-                    <Typography variant="subtitle2">Họ và tên:</Typography>
+                    <Typography variant="subtitle2">Full Name:</Typography>
                   </Grid>
                   <Grid item xs={8}>
                     <Typography variant="subtitle2">
@@ -26,23 +26,23 @@ function StudentCodeTopic() {
                 </Grid>
                 <Grid container spacing={1} mt={2}>
                   <Grid item xs={4}>
-                    <Typography variant="subtitle2">Khoa:</Typography>
+                    <Typography variant="subtitle2">Faculty:</Typography>
                   </Grid>
                   <Grid item xs={8}>
-                    <Typography variant="subtitle2">Chất lượng cao</Typography>
+                    <Typography variant="subtitle2">High Quality Faculty</Typography>
                   </Grid>
                 </Grid>
                 <Grid container spacing={1} mt={2}>
                   <Grid item xs={4}>
-                    <Typography variant="subtitle2">Tên đề tài:</Typography>
+                    <Typography variant="subtitle2">Topic Name:</Typography>
                   </Grid>
                   <Grid item xs={8}>
-                    <Typography variant="subtitle2">Đề tài mẫu 1</Typography>
+                    <Typography variant="subtitle2">Topic 1</Typography>
                   </Grid>
                 </Grid>
                 <Grid container spacing={1} mt={2}>
                   <Grid item xs={4}>
-                    <Typography variant="subtitle2">Lý do:</Typography>
+                    <Typography variant="subtitle2">Reason:</Typography>
                   </Grid>
                   <Grid item xs={8}>
                     <Typography variant="subtitle2"></Typography>
@@ -52,7 +52,7 @@ function StudentCodeTopic() {
               <Grid item xs={6}>
                 <Grid container spacing={1}>
                   <Grid item xs={4}>
-                    <Typography variant="subtitle2">Mã số:</Typography>
+                    <Typography variant="subtitle2">ID:</Typography>
                   </Grid>
                   <Grid item xs={8}>
                     <Typography variant="subtitle2">CT160585</Typography>
@@ -60,7 +60,7 @@ function StudentCodeTopic() {
                 </Grid>
                 <Grid container spacing={1} mt={2}>
                   <Grid item xs={4}>
-                    <Typography variant="subtitle2">Lớp:</Typography>
+                    <Typography variant="subtitle2">Class:</Typography>
                   </Grid>
                   <Grid item xs={8}>
                     <Typography variant="subtitle2">CLCIT</Typography>

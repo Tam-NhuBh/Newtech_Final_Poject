@@ -9,4 +9,4 @@ export const deletePeriod = async (id) =>
   await request.delete("/api/period/" + id);
 
 export const findPeriodByMajor = async (id) =>
-  await request.get("/api/period/find-by-major/" + id);
+  await request.get("/api/period/findByMajor/" + id);

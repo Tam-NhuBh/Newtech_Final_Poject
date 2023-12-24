@@ -13,15 +13,15 @@ function TeacherSelectTopic() {
   const columns = [
     {
       field: "id",
-      headerName: "Mã đề tài",
+      headerName: "Topic ID",
       width: 150,
     },
-    { field: "title", headerName: "Tên đề tài", width: 150 },
-    { field: "description", headerName: "Mô tả", width: 150 },
+    { field: "title", headerName: "Title", width: 150 },
+    { field: "description", headerName: "Description", width: 150 },
 
     {
       field: "",
-      headerName: "Hành động",
+      headerName: "Action",
       width: 250,
       renderCell: (params) => {
         return (
@@ -31,7 +31,7 @@ function TeacherSelectTopic() {
               size="small"
               onClick={() => handleSelectTopic(params.row._id)}
             >
-              Đăng kí
+              Register
             </Button>
           </Box>
         );
@@ -42,7 +42,7 @@ function TeacherSelectTopic() {
   const handleSelectTopic = async (id) => {
     try {
       await update(id, { teacher: currentUser?._id });
-      notify("success", "Chọn đề tài thành công");
+      notify("success", "Choose topic successfully");
       getListTopic();
     } catch (error) {
       console.log(error);
@@ -82,7 +82,7 @@ function TeacherSelectTopic() {
   return (
     <MainLayout>
       <Button fullWidth size="large" variant="contained">
-        Chọn đề tài hướng dẫn
+        Choose Topic
       </Button>
       {currentUser?.major ? (
         <Box height={"70vh"} width={"100%"} mt={4}>
@@ -98,10 +98,10 @@ function TeacherSelectTopic() {
           sx={{ cursor: "pointer" }}
         >
           <Typography variant="subtitle2">
-            Bạn phải cập nhật thông tin chuyên ngành trước khi đăng kí đề tài
+            You must update your major information before registering for a topic
           </Typography>
           <Button variant="contained" size="small" href="/teacher-info">
-            Cập nhật
+            Update
           </Button>
         </Box>
       )}

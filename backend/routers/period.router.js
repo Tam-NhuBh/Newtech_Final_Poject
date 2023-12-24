@@ -10,7 +10,7 @@ const {
 
 const asyncMiddelware = require("../middlewares/asyncHandle");
 
-router.route("/find-by-major/:id").get(asyncMiddelware(findByMajor));
+router.route("/findByMajor/:id").get(asyncMiddelware(findByMajor));
 router.route("/:id").delete(asyncMiddelware(deletePeriod));
 router.route("/").post(asyncMiddelware(create));
 router.route("/").get(asyncMiddelware(list));

@@ -38,10 +38,10 @@ function InfoAccount({ data, setList }) {
   const columns = [
     {
       field: "id",
-      headerName: "Mã người dùng",
+      headerName: "User Id",
       width: 150,
     },
-    { field: "name", headerName: "Họ tên", width: 150 },
+    { field: "name", headerName: "Full Name", width: 150 },
     { field: "username", headerName: "Username", width: 150 },
     {
       field: "email",
@@ -50,7 +50,7 @@ function InfoAccount({ data, setList }) {
     },
     {
       field: "major",
-      headerName: "Ngành",
+      headerName: "Major",
       width: 150,
       valueGetter: (params) => {
         return params.value?.name;
@@ -58,7 +58,7 @@ function InfoAccount({ data, setList }) {
     },
     {
       field: "role",
-      headerName: "Quyền",
+      headerName: "Role",
       width: 150,
       renderCell: (params) => {
         return (
@@ -71,7 +71,7 @@ function InfoAccount({ data, setList }) {
     },
     {
       field: "",
-      headerName: "Hành động",
+      headerName: "Action",
       width: 250,
       renderCell: (params) => {
         return (
@@ -85,7 +85,7 @@ function InfoAccount({ data, setList }) {
                 setIdDelete(params.row._id);
               }}
             >
-              Xóa
+              Delete
             </Button>
             <Button
               variant="contained"
@@ -95,7 +95,7 @@ function InfoAccount({ data, setList }) {
                 setIdUpdate(params.row._id);
               }}
             >
-              Cập nhật
+              Update
             </Button>
           </Box>
         );
@@ -106,7 +106,7 @@ function InfoAccount({ data, setList }) {
   const handleDelete = async () => {
     try {
       await deleteUser(idDelete);
-      notify("success", "Xóa tài khoản thành công");
+      notify("success", "Delete account successfully");
       setIsOpenConfirmDelete(false);
       setList(data?.filter((e) => e._id !== idDelete));
     } catch (error) {
@@ -127,7 +127,7 @@ function InfoAccount({ data, setList }) {
         role,
       });
 
-      notify("success", "Cập nhật thành công");
+      notify("success", "Update successfully");
       const newData = data?.map((i) => {
         if (i._id === idUpdate) return { id: res?.data?._id, ...res?.data };
         else return i;
@@ -160,7 +160,7 @@ function InfoAccount({ data, setList }) {
   return (
     <Box mt={8}>
       <Typography textAlign={"center"} variant="h6" fontWeight={"bold"}>
-        DANH SÁCH TÀI KHOẢN
+        ACCOUNT LISTS
       </Typography>
       <Box height={"70vh"} width={"100%"} mt={4}>
         <DataGrid rows={data} columns={columns} hideFooter={true} />
@@ -179,7 +179,7 @@ function InfoAccount({ data, setList }) {
           <Grid item xs={6}>
             <TextField
               fullWidth
-              label="Họ và tên"
+              label="Full Name"
               size="small"
               value={name}
               onChange={(e) => setName(e.target.value)}
@@ -215,7 +215,7 @@ function InfoAccount({ data, setList }) {
           <Grid item xs={6}>
             <TextField
               fullWidth
-              label="Số điện thoại"
+              label="Phone"
               size="small"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
@@ -231,7 +231,7 @@ function InfoAccount({ data, setList }) {
           <Grid item xs={6}>
             <TextField
               fullWidth
-              label="Ngày sinh"
+              label="Birthday"
               size="small"
               value={birth}
               onChange={(e) => setBirth(e.target.value)}
@@ -240,7 +240,7 @@ function InfoAccount({ data, setList }) {
           <Grid item xs={6}>
             <TextField
               fullWidth
-              label="Địa chỉ"
+              label="Address"
               size="small"
               value={address}
               onChange={(e) => setAddress(e.target.value)}
@@ -255,12 +255,12 @@ function InfoAccount({ data, setList }) {
               <FormControlLabel
                 value={1}
                 control={<Radio size="small" />}
-                label="Nam"
+                label="Male"
               />
               <FormControlLabel
                 value={0}
                 control={<Radio size="small" />}
-                label="Nữ"
+                label="Female"
               />
             </RadioGroup>
           </Grid>
