@@ -19,6 +19,30 @@ import { findTopicOfStudent } from "../../utils/api/topic";
 function StudentHome() {
   const [currentUser, setCurrentUser] = useState({});
   const [currentTopic, setCurrentTopic] = useState({});
+ // Khai báo state để lưu trữ file được chọn
+  const [selectedFile, setSelectedFile] = useState(null);
+
+    // Hàm xử lý sự kiện chọn file
+    const handleFileChange = (e) => {
+      setSelectedFile(e.target.files[0]);
+    };
+
+   // Hàm xử lý gửi file lên server
+    const handleFileSubmit = async () => {
+      try {
+        const formData = new FormData();
+        formData.append("file", selectedFile);
+
+        // Sử dụng hàm hoặc API để gửi formData lên server
+        // Ví dụ sử dụng fetch API:
+        const response = await fetch("/upload", {
+          method: "POST",
+          body: formData,
+        });  
+      } catch (error) {
+        console.error("Error uploading file: ", error);
+      }
+    };
 
   useEffect(() => {
     const getCurrentUser = async () => {
@@ -71,7 +95,7 @@ function StudentHome() {
                   <TimelineContent>
                     <Accordion>
                       <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                        <Typography>State 1</Typography>
+                        <Typography>Stage 1</Typography>
                       </AccordionSummary>
                       <AccordionDetails>
                         <Box mt={4}>
@@ -107,7 +131,7 @@ function StudentHome() {
                             justifyContent={"center"}
                             mt={2}
                           >
-                            <Button variant="contained" size="small">
+                            <Button variant="contained" size="small" onClick={handleFileSubmit}>
                               Update
                             </Button>
                           </Box>
@@ -166,7 +190,7 @@ function StudentHome() {
                             justifyContent={"center"}
                             mt={2}
                           >
-                            <Button variant="contained" size="small">
+                            <Button variant="contained" size="small" onClick={handleFileSubmit}>
                               Update
                             </Button>
                           </Box>
@@ -225,7 +249,7 @@ function StudentHome() {
                             justifyContent={"center"}
                             mt={2}
                           >
-                            <Button variant="contained" size="small">
+                            <Button variant="contained" size="small" onClick={handleFileSubmit}>
                               Update
                             </Button>
                           </Box>
@@ -249,7 +273,7 @@ function StudentHome() {
             <Typography variant="subtitle2">
               You are currently not registered for any topics
             </Typography>
-            <Button variant="contained" size="small" href="/sub-topic">
+            <Button variant="contained" size="small" href="/subTopic">
               Register
             </Button>
           </Box>

@@ -5,7 +5,7 @@ import pdfUrl from "../../assets/pdf/guestInstrument.pdf";
 
 function GuestInstruction() {
   const downloadPDF = () => {
-    window.open("https://drive.google.com/file/d/13eKliXMZJs4HBETKBnP1LoUaSpT1SKOn/view?usp=sharing", "_blank");
+    window.open("https://drive.google.com/file/d/1bjNFpCjfEDpUrvh6cU2PcZDMath3J0Fg/view?usp=sharing", "_blank");
   };
 
   return (

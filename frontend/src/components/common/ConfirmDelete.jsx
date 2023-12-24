@@ -40,7 +40,7 @@ const ConfirmDelete = ({ open, title, content, handleClose, handleOk }) => {
           Cancel
         </Button>
         <Button autoFocus onClick={handleOk} size="small" variant="contained">
-          Delete
+          Confirm
         </Button>
       </DialogActions>
     </Dialog>
