@@ -11,7 +11,7 @@ import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined
 import SwitchCameraOutlinedIcon from "@mui/icons-material/SwitchCameraOutlined";
 
 // Create an array containing empty items
-const emptyItems = Array.from({ length: 7 }).map(() => ({ name: "" }));
+const emptyItems = Array.from({ length: 10 }).map(() => ({ name: "" }));
 
 export const adminSideBar = [
   {
@@ -39,6 +39,8 @@ export const adminSideBar = [
     icon: <CalendarTodayOutlinedIcon />,
     href: "/periodManagement",
   },
+  ...emptyItems,
+
 ];
 
 export const managementSideBar = [
@@ -63,6 +65,7 @@ export const managementSideBar = [
     icon: <RateReviewOutlinedIcon />,
     href: "/assignTeacherReview",
   },
+
 ];
 
 export const teacherSideBar = [
@@ -78,7 +81,7 @@ export const teacherSideBar = [
     href: "/teacherSelectTopic",
   },
   {
-    name: "Submit Project",
+    name: "Register Project",
     icon: <AddCircleOutlineIcon />,
     href: "/teacherSubTopic",
   },
@@ -87,6 +90,8 @@ export const teacherSideBar = [
     icon: <RateReviewOutlinedIcon />,
     href: "/assignedReview",
   },
+   ...emptyItems,
+
 ];
 
 export const studentSideBar = [

@@ -40,7 +40,7 @@ function TeacherInfo() {
       <Button fullWidth size="large" variant="contained">
         Lecturer Information
       </Button>
-      <Box mt={4}>
+      <Box mt={4}> 
         <TableUserInfomation
           user={currentUser}
           handleUpdate={() => setIsOpenModalUpdate(true)}

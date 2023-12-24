@@ -25,24 +25,23 @@ function MajorManagement() {
   const columns = [
     {
       field: "id",
-      headerName: "Major Id",
+      headerName: "ID Major",
       width: 150,
     },
-    { field: "name", headerName: "Major Name", width: 300 },
+    { field: "name", headerName: "Name of Major", width: 300 },
     {
       field: "isBlock",
       headerName: "Status",
       width: 150,
       renderCell: (params) => {
-        const label = params.row.isBlock > 0 ? "Available" : "Inavailable";
-        const color = params.row.isBlock > 0 ? "success" : "error";
+        const label = params.row.isBlock > 0 ? "Open" : "Close";
+        const textColor = params.row.isBlock > 0 ? "green" : "red";
 
-        return <Chip label={label} color={color} />;
+        return <span style={{ color: textColor }}>{label}</span>;
       },
     },
     {
       field: "",
-      headerName: "Action",
       width: 250,
       renderCell: (params) => {
         return (
@@ -110,84 +109,96 @@ function MajorManagement() {
 
   return (
     <MainLayout>
-      <Box>
-        <Button fullWidth size="large" variant="contained">
-          Manage Major
-        </Button>
-        <Box mt={2}>
-          <Grid
-            container
-            spacing={2}
-            component={"form"}
-            onSubmit={handleCreateMajor}
-          >
-            <Grid item xs={6}>
-              <TextField
-                fullWidth
-                size="small"
-                label="Name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                required
-              />
-            </Grid>
+        <Box>
+          <Button fullWidth size="large" variant="contained">
+            Major Management
+          </Button>
+  
+          <Box mt={2} >
+            <Grid
+              container
+              spacing={2}
+              component={"form"}
+              onSubmit={handleCreateMajor}
+              
+            >
+              <Grid item xs={6} >
+                <TextField
+                  fullWidth
+                  size="small"
+                  label="Add new major"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  sx={{ backgroundColor: 'rgba(255, 255, 255, 0.8)' }} // Đổi màu nền tại đây
 
-            <Grid item xs={6}>
-              <Box
-                display={"flex"}
-                alignItems={"center"}
-                gap={2}
-                justifyContent={"center"}
-                height={"100%"}
-              >
-                <Button variant="contained" type="submit">
-                  Add Major
-                </Button>
-              </Box>
+                  required
+                />
+              </Grid>
+
+              <Grid item xs={2}>
+                <Box
+                  display={"flex"}
+                  alignItems={"center"}
+                  gap={2}
+                  justifyContent={"center"}
+                  height={"100%"}
+                >
+                  <Button variant="contained" type="submit">
+                    Add news
+                  </Button>
+                </Box>
+              </Grid>
             </Grid>
-          </Grid>
-        </Box>
-        <Box height={"70vh"} width={"100%"} mt={4}>
-          <DataGrid rows={listMajor} columns={columns} hideFooter={true} />
-        </Box>
-        <ModalUpdate
-          open={isOpenModalUpdate}
-          handleClose={() => setIsOpenModalUpdate(false)}
-          handleOk={handleUpdateMajor}
-        >
-          <Typography variant="subtitle2" my={2}>
-            Major Name:
-          </Typography>
-          <TextField
-            fullWidth
-            size="small"
-            value={majorUpdate?.name}
-            onChange={(e) =>
-              setMajorUpdate({ ...majorUpdate, name: e.target.value })
-            }
-          />
-          <Typography variant="subtitle2" my={2}>
-            Status
-          </Typography>
-          <RadioGroup
-            row
-            value={majorUpdate?.isBlock}
-            onChange={(e) =>
-              setMajorUpdate({ ...majorUpdate, isBlock: e.target.value })
-            }
-          >
-            <FormControlLabel
-              value={1}
-              control={<Radio size="small" />}
-              label="Available"
-            />
-            <FormControlLabel
-              value={0}
-              control={<Radio size="small" />}
-              label="Inavailable"
-            />
-          </RadioGroup>
-        </ModalUpdate>
+          </Box>
+          
+          <Box   mt={4} sx={{
+            background: "rgba(255, 255, 255, 0.8)",
+            padding: "1rem",
+          }}> {/* Đổi màu nền tại đây */}
+
+              <Box height={"40vh"} width={"100%"} mt={4} >
+                <DataGrid rows={listMajor} columns={columns} hideFooter={true} />
+              </Box>
+              <ModalUpdate
+                open={isOpenModalUpdate}
+                handleClose={() => setIsOpenModalUpdate(false)}
+                handleOk={handleUpdateMajor}
+              >
+                <Typography variant="subtitle2" my={2}>
+                  Name Of Major:
+                </Typography>
+                <TextField
+                  fullWidth
+                  size="small"
+                  value={majorUpdate?.name}
+                  onChange={(e) =>
+                    setMajorUpdate({ ...majorUpdate, name: e.target.value })
+                  }
+         
+                />
+                <Typography variant="subtitle2" my={2}>
+                  Status
+                </Typography>
+                <RadioGroup
+                  row
+                  value={majorUpdate?.isBlock}
+                  onChange={(e) =>
+                    setMajorUpdate({ ...majorUpdate, isBlock: e.target.value })
+                  }
+                >
+                  <FormControlLabel
+                    value={1}
+                    control={<Radio size="small" />}
+                    label="Open"
+                  />
+                  <FormControlLabel
+                    value={0}
+                    control={<Radio size="small" />}
+                    label="Close"
+                  />
+                </RadioGroup>
+              </ModalUpdate>
+            </Box>
       </Box>
     </MainLayout>
   );

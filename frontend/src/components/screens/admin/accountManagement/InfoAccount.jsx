@@ -18,6 +18,36 @@ import { notify } from "../../../../utils/helpers/notify";
 import ModalUpdate from "../../../common/ModalUpdate";
 import SelectMajor from "../../../common/SelectMajor";
 
+function getRoleLabel(role) {
+  switch (role) {
+    case 3:
+      return "Admin";
+    case 1:
+      return "Teacher";
+    case 0:
+      return "Student";
+    case 2:
+      return "Department Head";
+    default:
+      return "";
+  }
+}
+
+function getRoleColor(role) {
+  switch (role) {
+    case 3:
+      return "red"; // Màu đỏ
+    case 1:
+      return "green"; // Màu xanh lá cây
+    case 0:
+      return "primary"; // Màu xanh nước biển
+    case 2:
+      return "orange"; // Màu cam
+    default:
+      return "";
+  }
+}
+
 function InfoAccount({ data, setList }) {
   const [isOpenConfirmDelete, setIsOpenConfirmDelete] = useState(false);
   const [isOpenModalUpdate, setIsOpenModalUpdate] = useState(false);
@@ -38,7 +68,7 @@ function InfoAccount({ data, setList }) {
   const columns = [
     {
       field: "id",
-      headerName: "User Id",
+      headerName: "User ID",
       width: 150,
     },
     { field: "name", headerName: "Full Name", width: 150 },
@@ -61,17 +91,17 @@ function InfoAccount({ data, setList }) {
       headerName: "Role",
       width: 150,
       renderCell: (params) => {
+        const roleLabel = getRoleLabel(params.row.role);
+        const color = getRoleColor(params.row.role);
         return (
-          <Chip
-            label={getRole(params.row.role)}
-            color={getColor(params.row.role)}
-          />
+          <Typography variant="body1" color={color}>
+            {roleLabel}
+          </Typography>
         );
       },
     },
     {
       field: "",
-      headerName: "Action",
       width: 250,
       renderCell: (params) => {
         return (
@@ -158,11 +188,9 @@ function InfoAccount({ data, setList }) {
   }, [idUpdate]);
 
   return (
-    <Box mt={8}>
-      <Typography textAlign={"center"} variant="h6" fontWeight={"bold"}>
-        ACCOUNT LISTS
-      </Typography>
-      <Box height={"70vh"} width={"100%"} mt={4}>
+    
+    <Box>
+      <Box height={"20vh"} width={"100%"} mt={0}  sx={{backgroundColor: 'rgba(255, 255, 255, 0.8)'}}>
         <DataGrid rows={data} columns={columns} hideFooter={true} />
       </Box>
       <ConfirmDelete

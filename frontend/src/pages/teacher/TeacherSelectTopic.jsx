@@ -14,7 +14,7 @@ function TeacherSelectTopic() {
     {
       field: "id",
       headerName: "Topic ID",
-      width: 150,
+      width: 200,
     },
     { field: "title", headerName: "Title", width: 150 },
     { field: "description", headerName: "Description", width: 150 },
@@ -22,7 +22,7 @@ function TeacherSelectTopic() {
     {
       field: "",
       headerName: "Action",
-      width: 250,
+      width: 200,
       renderCell: (params) => {
         return (
           <Box display={"flex"} gap={2} alignItems={"center"}>
@@ -85,7 +85,13 @@ function TeacherSelectTopic() {
         Choose Topic
       </Button>
       {currentUser?.major ? (
-        <Box height={"70vh"} width={"100%"} mt={4}>
+        <Box height={"40vh"} 
+        width={"96%"} 
+        mt={4} 
+        sx={{
+          background: "rgba(255, 255, 255, 0.8)", // Màu nền trắng có độ trong suốt
+          padding: "1rem", // Thêm padding cho khung
+        }}>
           <DataGrid rows={listTopic} columns={columns} hideFooter={true} />
         </Box>
       ) : (

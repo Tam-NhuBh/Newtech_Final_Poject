@@ -50,7 +50,7 @@ function StudentHome() {
       <Button fullWidth size="large" variant="contained">
         Manage Topic
       </Button>
-      <Box mt={4} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.8)', padding: 2 }}>
+      <Box mt={4} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.8)', padding:2 }}>
         {currentTopic ? (
           <>
             <Typography variant="subtitle2">

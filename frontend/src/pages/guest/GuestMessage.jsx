@@ -47,7 +47,10 @@ function GuestMessage() {
       <Button fullWidth size="large" variant="contained">
         Notification
       </Button>
-      <Box height={300} width={"100%"} mt={4} bgcolor="rgba(255, 255, 255, 0.6)">
+      <Box height={300} width={"96%"} mt={4}         sx={{
+        background: "rgba(255, 255, 255, 0.8)",
+        padding: "1rem",
+      }}>
         <DataGrid rows={rows} columns={columns} />
       </Box>
     </MainLayout>

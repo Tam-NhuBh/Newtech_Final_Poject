@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Box, Button, Chip, Grid, TextField, Typography } from "@mui/material";
+import { Box, Button, Grid, TextField, Typography } from "@mui/material";
 import MainLayout from "../../components/layout/MainLayout";
 import { DataGrid } from "@mui/x-data-grid";
 import { deleteTopic, findTopic, list, update } from "../../utils/api/topic";
@@ -8,15 +8,29 @@ import ModalUpdate from "../../components/common/ModalUpdate";
 import { notify } from "../../utils/helpers/notify";
 import { findUser } from "../../utils/api/user";
 
+const StatusLabel = ({ status }) => {
+  const colorText = status === 0 ? "red" : "green";
+  const label = status === 0 ? "Chưa được phê duyệt" : "Đã được phê duyệt";
+  return <span style={{ color: colorText }}>{label}</span>;
+};
+
+const UserInfo = ({ label, value }) => {
+  return (
+    <Grid item xs={6}>
+      <Typography variant="subtitle2">
+        {label}: {value || "Không có"}
+      </Typography>
+    </Grid>
+  );
+};
+
 function TeacherHome() {
   const [listTopic, setListTopic] = useState([]);
   const [isOpenConfirmDelete, setIsOpenConfirmDelete] = useState(false);
   const [isOpenModalUpdate, setIsOpenModalUpdate] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
-
   const [idDelete, setIdDelete] = useState("");
   const [idUpdate, setIdUpdate] = useState("");
-
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [infoTopicUpdate, setInfoTopicUpdate] = useState({});
@@ -44,8 +58,7 @@ function TeacherHome() {
     },
     {
       field: "",
-      headerName: "Action",
-      width: 250,
+      width: 200,
       renderCell: (params) => {
         return (
           <Box display={"flex"} gap={2} alignItems={"center"}>
@@ -76,6 +89,7 @@ function TeacherHome() {
     },
   ];
 
+
   const handleDelete = async () => {
     try {
       await deleteTopic(idDelete);
@@ -83,7 +97,7 @@ function TeacherHome() {
       setIsOpenConfirmDelete(false);
       setListTopic(listTopic?.filter((e) => e._id !== idDelete));
     } catch (error) {
-      throw error;
+      console.error(error);
     }
   };
 
@@ -146,7 +160,14 @@ function TeacherHome() {
       <Button fullWidth size="large" variant="contained">
         Manage Topic
       </Button>
-      <Box height={"70vh"} width={"100%"} mt={4}>
+      <Box
+        height={"40vh"}
+        width={"96%"}
+        mt={4}
+        sx={{
+          background: "rgba(255, 255, 255, 0.8)", // Màu nền trắng có độ trong suốt
+          padding: "1rem", // Thêm padding cho khung
+        }}>     
         <DataGrid rows={listTopic} columns={columns} hideFooter={true} />
       </Box>
       <ConfirmDelete
@@ -156,12 +177,22 @@ function TeacherHome() {
         handleOk={handleDelete}
         handleClose={() => setIsOpenConfirmDelete(false)}
       />
+
       <ModalUpdate
         open={isOpenModalUpdate}
         handleClose={() => setIsOpenModalUpdate(false)}
         handleOk={handleUpdate}
-        title={"Details Box"}
+        title={
+          <Typography variant="h6" sx={{ textAlign: 'center' }}>
+            Details Box
+          </Typography>
+        }
       >
+        <Box p={2}>
+          <Typography variant="subtitle2" color={"error"}>
+            *Note: You can only update topics you create
+          </Typography>
+        </Box>
         <Grid container spacing={2} py={2}>
           {infoTopicUpdate?.owner === currentUser?._id ? (
             <>
@@ -188,19 +219,16 @@ function TeacherHome() {
             </>
           ) : (
             <>
-              <Grid item xs={6}>
+              <Grid item xs={12}>
                 <Typography variant="subtitle2">
                   Topic Name: {infoTopicUpdate?.title}
                 </Typography>
-              </Grid>
-              <Grid item xs={6}>
                 <Typography variant="subtitle2">
-                  Student: {infoTopicUpdate?.description}
+                  Description: {infoTopicUpdate?.description}
                 </Typography>
               </Grid>
             </>
           )}
-
           <Grid item xs={6}>
             <Typography variant="subtitle2">
               Major: {infoTopicUpdate?.major?.name}
@@ -214,7 +242,7 @@ function TeacherHome() {
                 : "Nothing"}
             </Typography>
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={12}>
             <Typography variant="subtitle2">
               Status:{" "}
               {infoTopicUpdate?.approveByManagement === 1
@@ -222,13 +250,9 @@ function TeacherHome() {
                 : "Not Approved"}
             </Typography>
           </Grid>
-          <Grid item xs={12}>
-            <Typography variant="subtitle2" color={"error"}>
-              *Note: You can only update topics you create
-            </Typography>
-          </Grid>
         </Grid>
       </ModalUpdate>
+
     </MainLayout>
   );
 }
